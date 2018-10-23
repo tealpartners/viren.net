@@ -1,0 +1,29 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>netstandard2.0</TargetFramework>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+        <Version>0.0.1</Version>
+        <Authors>Teal Partners</Authors>
+        <Product>Viren execution .NET client</Product>
+        <RepositoryUrl>https://github.com/tealpartners/viren.net</RepositoryUrl>
+        <PackageProjectUrl>https://www.viren.be/</PackageProjectUrl>
+        <PackageLicenseUrl>https://github.com/tealpartners/viren.net/blob/master/LICENSE</PackageLicenseUrl>
+        <ApplicationIcon>icon.ico</ApplicationIcon>
+        <Description>.NET client for the Viren Execution API</Description>
+        <Copyright>© 2018 Teal Partners</Copyright>
+        <PackageIconUrl>https://github.com/tealpartners/viren.net/blob/master/assets/icon.png</PackageIconUrl>
+        <PackageTags>Viren; API; Client</PackageTags>
+        <SignAssembly>false</SignAssembly>
+        <DelaySign>false</DelaySign>
+        <AssemblyOriginatorKeyFile>VirenExecutionKey.pfx</AssemblyOriginatorKeyFile>
+        <AssemblyName>Viren.Client.Execution</AssemblyName>
+        <RootNamespace>Viren.Client.Execution</RootNamespace>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
+    </ItemGroup>
+
+</Project>
