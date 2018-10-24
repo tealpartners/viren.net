@@ -1,9 +1,10 @@
 ﻿using System.Collections.Generic;
 using Newtonsoft.Json.Linq;
+using Viren.Client.Execution.Core.Dtos;
 
 namespace Viren.Client.Execution.Requests.Models
 {
-    public class GetLookupTablesRequest
+    public class GetLookupTablesRequest: IProjectModelVersionRevision
     {
         public string Project { get; set; }
 

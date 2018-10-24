@@ -16,17 +16,17 @@ namespace Viren.Client.Execution.Clients
 
         public Task<GetLatestVersionResponse> GetVersion(GetLatestVersionRequest request)
         {
-            return _client.Get<GetLatestVersionResponse>($"{RoutePrefix.Project}/{request.Project}/{request.Model}/latest-version?draft={request.Draft}");
+            return _client.Get<GetLatestVersionResponse>($"{RoutePrefix.Project}/{_client.BuildUrl(request)}/latest-version?draft={request.Draft}");
         }
 
         public Task<GetLookupTableResponse> GetTable(GetLookupTableRequest request)
         {
-            return _client.Get<GetLookupTableResponse>($"{RoutePrefix.Project}/{request.Project}/{request.Model}/{request.Version}/{request.Revision}/globals/table");
+            return _client.Get<GetLookupTableResponse>($"{RoutePrefix.Project}/{_client.BuildUrl(request)}/globals/table");
         }
 
         public Task<GetLookupTablesResponse> GetTables(GetLookupTablesRequest request)
         {
-            var url = $"{RoutePrefix.Project}/{request.Project}/{request.Model}/{request.Version}/{request.Revision}/globals/tables?";
+            var url = $"{RoutePrefix.Project}/{_client.BuildUrl(request)}/globals/tables?";
             url = request.GlobalIds.Aggregate(url, (current, globalId) => current + "GlobalIds=" + globalId + "&").TrimEnd('&');
             return _client.Get<GetLookupTablesResponse>(url);
         }

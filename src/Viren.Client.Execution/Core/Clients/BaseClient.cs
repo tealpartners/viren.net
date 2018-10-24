@@ -4,7 +4,9 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
+using Viren.Client.Execution.Core.Dtos;
 using Viren.Client.Execution.Core.Serialization;
+using Viren.Client.Execution.Requests;
 using Environment = Viren.Client.Execution.Core.Enums.Environment;
 
 namespace Viren.Client.Execution.Core.Clients
@@ -116,5 +118,10 @@ namespace Viren.Client.Execution.Core.Clients
             httpContent.Headers.ContentType = new MediaTypeWithQualityHeaderValue("application/json");
             return httpContent;
         }
+
+        internal string BuildUrl(IProject request) => request.Project;
+        internal string BuildUrl(IProjectModel request) => BuildUrl((IProject) request) + "/" + request.Model;
+        internal string BuildUrl(IProjectModelVersion request) => BuildUrl((IProjectModel) request) + "/" + request.Version;
+        internal string BuildUrl(IProjectModelVersionRevision request) => BuildUrl((IProjectModelVersion) request) + "/" + (request.Revision.HasValue ? request.Revision.Value.ToString() : "null");
     }
 }

@@ -1,6 +1,8 @@
-﻿namespace Viren.Client.Execution.Requests.Models
+﻿using Viren.Client.Execution.Core.Dtos;
+
+namespace Viren.Client.Execution.Requests.Models
 {
-    public class GetLatestVersionRequest
+    public class GetLatestVersionRequest: IProjectModel
     {
         public string Project { get; set; }
 
