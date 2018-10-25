@@ -12,6 +12,8 @@
 
     internal class Auth0Response
     {
+#pragma warning disable 649
         public string AccessToken;
+#pragma warning restore 649
     }
 }

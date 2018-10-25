@@ -17,8 +17,8 @@ var request = new ExecuteCalculationRequest()
     Root = new Dictionary<string, object>
         {
             { "Input", 5 }
-        },,
-    request.EntryPoint = "RootBlock"
+        },
+    EntryPoint = "RootBlock"
 };
 var calculation = client.Calculation.Execute(request);
 calculation.Wait();

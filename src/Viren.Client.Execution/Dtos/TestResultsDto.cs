@@ -1,17 +1,21 @@
-﻿using Viren.Client.Execution.Core.Dtos.TypeValues;
+﻿using Viren.Client.Execution.Core.Enums;
 
 namespace Viren.Client.Execution.Dtos
 {
     public class ParameterNameValueTypeDto
     {
         public string Name { get; set; }
-        public ValueDefinition ValueDefinition { get; set; }
+        public string TypeName { get; set; }
+        public TypeKind TypeKind { get; set; }
+        public object Value { get; set; }
     }
 
     public class ResultPropertyNameValueTypeDto
     {
         public string Name { get; set; }
-        public ValueDefinition ValueDefinition { get; set; }
+        public string TypeName { get; set; }
+        public TypeKind TypeKind { get; set; }
+        public object Value { get; set; }
     }
 
     public class TestResultDto

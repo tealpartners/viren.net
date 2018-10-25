@@ -11,6 +11,7 @@ namespace Viren.Client.Execution
         {
             Calculation = new CalculationClient(this);
             Model = new ModelClient(this);
+            InteractiveRunClient = new InteractiveRunClient(this);
         }
 
         public ExecutionClient(string publicKey, string secretKey, Environment environment) : this(publicKey, secretKey, GetVirenDomain(environment), GetAuth0Domain(environment))
@@ -19,6 +20,7 @@ namespace Viren.Client.Execution
 
         public CalculationClient Calculation { get; }
         public ModelClient Model { get; }
+        public InteractiveRunClient InteractiveRunClient { get; }
 
 
         protected static string GetVirenDomain(Environment environment)

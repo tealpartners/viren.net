@@ -1,4 +1,4 @@
-using Viren.Client.Execution.Core.Dtos.TypeValues;
+using Viren.Client.Execution.Core.Enums;
 
 namespace Viren.Client.Execution.Dtos
 {
@@ -6,7 +6,9 @@ namespace Viren.Client.Execution.Dtos
     {
         public string BlockName { get; set; }
         public string Name { get; set; }
-        public ValueDefinition ValueDefinition { get; set; }
+        public TypeKind TypeKind { get; set; }
+        public string TypeName { get; set; }
+        public object Value { get; set; }
         public bool IsInput { get; set; }
         public InteractiveModelParameterDto GlobalReference { get; set; }
     }

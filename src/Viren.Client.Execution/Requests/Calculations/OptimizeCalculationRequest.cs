@@ -23,14 +23,14 @@ namespace Viren.Client.Execution.Requests.Calculations
         public IDictionary<string, object> Root { get; set; }
         public IDictionary<string, object> Globals { get; set; }
 
-        public List<OptimizeInputInfoDto> OptimizeInputs { get; set; }
+        public IList<OptimizeInputInfoDto> OptimizeInputs { get; set; }
         public OptimizeOutputInfoDto OptimizeOutput { get; set; }
     }
 
     public class OptimizeCalculationResponse
     {
-        public IDictionary<string, object> Result { get; set; }
-        public IDictionary<string, object> Input { get; set; }
+        public Dictionary<string, object> Result { get; set; }
+        public Dictionary<string, object> Input { get; set; }
         public string AbortReason { get; set; }
         public List<OptimizeAttempt> Attempts { get; set; }
     }

@@ -1,9 +1,10 @@
 using System.Collections.Generic;
+using Viren.Client.Execution.Core.Dtos;
 using Viren.Client.Execution.Dtos;
 
 namespace Viren.Client.Execution.Requests.InteractiveRun
 {
-    public class GetInteractiveModelDataRequest
+    public class GetInteractiveModelDataRequest: IProjectModelVersion
     {
         public string Project { get; set; }
         public string Model { get; set; }
