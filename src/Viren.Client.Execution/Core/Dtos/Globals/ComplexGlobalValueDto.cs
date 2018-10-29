@@ -14,6 +14,5 @@ namespace Viren.Client.Execution.Core.Dtos.Globals
         public object[] Value { get; set; }
 
         public TypeKind TypeKind => TypeKind.Complex;
-
     }
 }

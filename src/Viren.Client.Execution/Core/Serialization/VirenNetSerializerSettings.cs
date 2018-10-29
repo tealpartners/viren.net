@@ -7,6 +7,7 @@ namespace Viren.Client.Execution.Core.Serialization
         public VirenNetSerializerSettings()
         {
             ContractResolver = new CamelCaseExceptDictionaryKeysResolver();
+            FloatParseHandling = FloatParseHandling.Decimal;
         }
     }
 }

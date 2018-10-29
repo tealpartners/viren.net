@@ -2,7 +2,7 @@
 
 namespace Viren.Client.Execution.Requests.Models
 {
-    public class GetLatestVersionRequest: IProjectModel
+    public class GetLatestVersionRequest : IProjectModel
     {
         public string Project { get; set; }
 

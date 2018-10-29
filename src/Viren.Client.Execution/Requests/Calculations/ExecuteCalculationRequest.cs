@@ -7,7 +7,7 @@ namespace Viren.Client.Execution.Requests.Calculations
     public class ExecuteCalculationRequest
     {
         public string RequestId = Guid.NewGuid().ToString();
-        
+
         public IDictionary<string, object> Globals = new Dictionary<string, object>();
 
         public IDictionary<string, object> Root = new Dictionary<string, object>();
