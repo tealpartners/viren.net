@@ -4,9 +4,9 @@ using System.Threading.Tasks;
 using Newtonsoft.Json;
 using Viren.Client.Execution.Core.Serialization;
 
-namespace Viren.Client.Execution.Clients.Helpers
+namespace Viren.Client.Execution.Core.Helpers
 {
-    static class HttpHelper
+    internal static class HttpHelper
     {
         private static readonly JsonSerializerSettings JsonSerializerSettings = new VirenNetSerializerSettings();
 
@@ -30,11 +30,14 @@ namespace Viren.Client.Execution.Clients.Helpers
         {
             var requestMessage = new HttpRequestMessage(httpMethod, url);
 
-            if (httpMethod != HttpMethod.Get) requestMessage.Content = request.ToStringContent(JsonSerializerSettings);
+            if (httpMethod != HttpMethod.Get)
+            {
+                requestMessage.Content = request.ToStringContent(JsonSerializerSettings);
+            }
 
-            var response = await client.SendAsync(requestMessage);
+            var response = await client.SendAsync(requestMessage).ConfigureAwait(false);;
 
-            var responseString = await response.Content.ReadAsStringAsync();
+            var responseString = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
             if (response.IsSuccessStatusCode)
             {
                 return JsonConvert.DeserializeObject<TResponse>(responseString, JsonSerializerSettings);

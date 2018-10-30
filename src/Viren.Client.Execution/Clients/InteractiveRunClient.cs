@@ -1,6 +1,6 @@
 using System.Net.Http;
 using System.Threading.Tasks;
-using Viren.Client.Execution.Clients.Helpers;
+using Viren.Client.Execution.Core.Helpers;
 using Viren.Client.Execution.Requests;
 using Viren.Client.Execution.Requests.InteractiveRun;
 
@@ -12,11 +12,11 @@ namespace Viren.Client.Execution.Clients
         Task<GetInteractiveModelDataResponse> GetVersion(GetInteractiveModelDataRequest request);
     }
 
-    public class InteractiveRunClient : IInteractiveRunClient
+    internal class InteractiveRunClient : IInteractiveRunClient
     {
         private readonly HttpClient _client;
 
-        public InteractiveRunClient(HttpClient client)
+        internal InteractiveRunClient(HttpClient client)
         {
             _client = client;
         }

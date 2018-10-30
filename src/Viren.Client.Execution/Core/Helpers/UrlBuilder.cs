@@ -1,8 +1,8 @@
 ﻿using Viren.Client.Execution.Core.Dtos;
 
-namespace Viren.Client.Execution.Clients.Helpers
+namespace Viren.Client.Execution.Core.Helpers
 {
-    static class UrlBuilder
+    internal static class UrlBuilder
     {
         internal static string BuildUrl(IProject request) => request.Project;
         internal static string BuildUrl(IProjectModel request) => BuildUrl((IProject) request) + "/" + request.Model;

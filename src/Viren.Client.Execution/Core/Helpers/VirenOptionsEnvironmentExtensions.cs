@@ -1,8 +1,7 @@
 using System;
-using System.Linq;
 using Environment = Viren.Client.Execution.Core.Enums.Environment;
 
-namespace Viren.Client.Execution
+namespace Viren.Client.Execution.Core.Helpers
 {
     public static class VirenOptionsEnvironmentExtensions
     {
@@ -26,13 +25,21 @@ namespace Viren.Client.Execution
         }
         
         
-        public static VirenOptions UseEnvironment(this VirenOptions options, Core.Enums.Environment environment, string clientId, string clientSecret)
+        public static VirenOptions UseEnvironment(this VirenOptions options, Environment environment, string clientId, string clientSecret)
         {
-            return environment == Environment.Production ? options.UseProduction(clientId, clientSecret) :
-                environment == Environment.Acceptance ? options.UseAcceptance(clientId, clientSecret) :
-                environment == Environment.Develop ? options.UseDevelopment(clientId, clientSecret) :
-                environment == Environment.Local ? options.UseLocal(clientId, clientSecret) :
-                throw new Exception($"Environment '{environment}', does not exist.");
+            switch (environment)
+            {
+                case Environment.Production:
+                    return options.UseProduction(clientId, clientSecret);
+                case Environment.Acceptance:
+                    return options.UseAcceptance(clientId, clientSecret);
+                case Environment.Develop:
+                    return options.UseDevelopment(clientId, clientSecret);
+                case Environment.Local:
+                    return options.UseLocal(clientId, clientSecret);
+                default:
+                    throw new Exception($"Environment '{environment}', does not exist.");
+            }
         }
     }
 }

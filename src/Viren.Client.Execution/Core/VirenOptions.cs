@@ -1,6 +1,4 @@
-using System;
-
-namespace Viren.Client.Execution
+namespace Viren.Client.Execution.Core
 {
     public class VirenOptions
     {

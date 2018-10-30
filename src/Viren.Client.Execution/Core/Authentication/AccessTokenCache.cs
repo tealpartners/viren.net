@@ -1,12 +1,11 @@
 ﻿using System;
 using System.Threading;
 using System.Threading.Tasks;
-using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 
-namespace Viren.Client.Execution.Authentication
+namespace Viren.Client.Execution.Core.Authentication
 {
-    class AccessTokenCache
+    internal class AccessTokenCache
     {
         private readonly Auth0TokenClient _auth0TokenClient;
         private readonly VirenOptions _virenConfig;
@@ -27,10 +26,10 @@ namespace Viren.Client.Execution.Authentication
         {
         }
 
-        public async Task<string> GetAccessToken(bool refresh, CancellationToken cancellationToken)
+        internal async Task<string> GetAccessToken(bool refresh, CancellationToken cancellationToken)
         {
             var currentBeforeLock = _accessToken;
-            if (!await _lock.WaitAsync(LockTimeout, cancellationToken))
+            if (!await _lock.WaitAsync(LockTimeout, cancellationToken).ConfigureAwait(false))
             {
                 throw new Exception($"Lock timeout not released within {LockTimeout} in {typeof(AccessTokenCache)}");                
             }
@@ -48,7 +47,7 @@ namespace Viren.Client.Execution.Authentication
                 _accessToken = current = await _auth0TokenClient.GetAccessToken(
                     _virenConfig.ClientId, 
                     _virenConfig.ClientSecret, 
-                    _virenConfig.Audience);
+                    _virenConfig.Audience).ConfigureAwait(false);
                 return current;
             }
             finally

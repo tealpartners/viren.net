@@ -1,7 +1,7 @@
 using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
-using Viren.Client.Execution.Clients.Helpers;
+using Viren.Client.Execution.Core.Helpers;
 using Viren.Client.Execution.Requests;
 using Viren.Client.Execution.Requests.Models;
 
@@ -17,11 +17,11 @@ namespace Viren.Client.Execution.Clients
         Task<GetLookupTablesResponse> GetTables(GetLookupTablesRequest request);
     }
 
-    public class ModelClient : IModelClient
+    internal class ModelClient : IModelClient
     {
         private readonly HttpClient _client;
 
-        public ModelClient(HttpClient client)
+        internal ModelClient(HttpClient client)
         {
             _client = client;
         }

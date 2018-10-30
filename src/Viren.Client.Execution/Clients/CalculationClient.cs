@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
-using Viren.Client.Execution.Clients.Helpers;
+using Viren.Client.Execution.Core.Helpers;
 using Viren.Client.Execution.Requests;
 using Viren.Client.Execution.Requests.Calculations;
 
@@ -22,12 +22,12 @@ namespace Viren.Client.Execution.Clients
         Task<OptimizeCalculationResponse> Optimize(OptimizeCalculationRequest request);
     }
 
-    public class CalculationClient : ICalculationClient
+    internal class CalculationClient : ICalculationClient
     {
         private readonly HttpClient _client;
         private readonly IModelClient _modelClient;
 
-        public CalculationClient(HttpClient client, IModelClient modelClient)
+        internal CalculationClient(HttpClient client, IModelClient modelClient)
         {
             _client = client;
             _modelClient = modelClient;
@@ -36,12 +36,12 @@ namespace Viren.Client.Execution.Clients
         public async Task<ExecuteCalculationResponse> ExecuteWithLatestVersion(string project, string model, bool draft, string entryPoint,
             IDictionary<string, object> globals = null, IDictionary<string, object> root = null, bool? debug = null, bool? full = null, string requestId = null)
         {
-            var versionTask = await _modelClient.GetVersion(project, model, draft);
+            var versionTask = await _modelClient.GetVersion(project, model, draft).ConfigureAwait(false);
             var version = versionTask.Version;
             var revision = versionTask.Revision;
-            return await Execute(project, model, version, entryPoint, globals, root, revision, debug, full, requestId);
+            return await Execute(project, model, version, entryPoint, globals, root, revision, debug, full, requestId).ConfigureAwait(false);
         }
-        
+
         public Task<ExecuteCalculationResponse> Execute(string project, string model, int version, string entryPoint,
             IDictionary<string, object> globals = null, IDictionary<string, object> root = null,
             int? revision = null, bool? debug = null, bool? full = null, string requestId = null)
@@ -50,15 +50,17 @@ namespace Viren.Client.Execution.Clients
             {
                 globals = new Dictionary<string, object>();
             }
+
             if (root == null)
             {
                 root = new Dictionary<string, object>();
             }
+
             if (string.IsNullOrEmpty(requestId))
             {
                 requestId = Guid.NewGuid().ToString();
             }
-            
+
             var request = new ExecuteCalculationRequest()
             {
                 RequestId = requestId,
@@ -79,7 +81,7 @@ namespace Viren.Client.Execution.Clients
         {
             return _client.Post<ExecuteCalculationRequest, ExecuteCalculationResponse>($"{RoutePrefix.Calculation}?debug={request.Debug}&full={request.Full}", request);
         }
-        
+
         public Task<OptimizeCalculationResponse> Optimize(OptimizeCalculationRequest request)
         {
             return _client.Post<OptimizeCalculationRequest, OptimizeCalculationResponse>($"{RoutePrefix.Calculation}/optimize", request);

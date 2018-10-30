@@ -1,11 +1,10 @@
 ﻿using System.Net.Http;
-using System.Net.Http.Headers;
 using System.Text;
 using Newtonsoft.Json;
 
-namespace Viren.Client.Execution.Clients.Helpers
+namespace Viren.Client.Execution.Core.Helpers
 {
-    static class StringContentExtensions 
+    internal static class StringContentExtensions 
     {
         public static StringContent ToStringContent(this object request, JsonSerializerSettings jsonSerializerSettings)
         {
