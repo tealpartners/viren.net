@@ -10,7 +10,9 @@ namespace Viren.Client.Execution.Core.Helpers
     {
         public static IServiceCollection AddViren(this IServiceCollection serviceCollection, Environment environment,
             string clientId, string clientSecret)
-            => serviceCollection.AddViren(ops => ops.UseEnvironment(environment, clientId, clientSecret));
+        {
+            return serviceCollection.AddViren(ops => ops.UseEnvironment(environment, clientId, clientSecret));
+        }
 
         public static IServiceCollection AddViren(this IServiceCollection serviceCollection, Action<VirenOptions> configureOptions,
             Action<IHttpClientBuilder> extendOidcHttpClient = null,

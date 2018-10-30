@@ -11,6 +11,7 @@ namespace Viren.Client.Execution.Core
             Calculation = new CalculationClient(client, Model);
             InteractiveRun = new InteractiveRunClient(client);
         }
+
         public ICalculationClient Calculation { get; }
         public IModelClient Model { get; }
         public IInteractiveRunClient InteractiveRun { get; }

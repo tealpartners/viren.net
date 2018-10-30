@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
-using Newtonsoft.Json;
 using Viren.Client.Execution.Core.Helpers;
 using Viren.Client.Execution.Requests;
 using Viren.Client.Execution.Requests.Calculations;
@@ -46,22 +45,13 @@ namespace Viren.Client.Execution.Clients
             IDictionary<string, object> globals = null, IDictionary<string, object> root = null,
             int? revision = null, bool? debug = null, bool? full = null, string requestId = null)
         {
-            if (globals == null)
-            {
-                globals = new Dictionary<string, object>();
-            }
+            if (globals == null) globals = new Dictionary<string, object>();
 
-            if (root == null)
-            {
-                root = new Dictionary<string, object>();
-            }
+            if (root == null) root = new Dictionary<string, object>();
 
-            if (string.IsNullOrEmpty(requestId))
-            {
-                requestId = Guid.NewGuid().ToString();
-            }
+            if (string.IsNullOrEmpty(requestId)) requestId = Guid.NewGuid().ToString();
 
-            var request = new ExecuteCalculationRequest()
+            var request = new ExecuteCalculationRequest
             {
                 RequestId = requestId,
                 Project = project,
@@ -76,7 +66,7 @@ namespace Viren.Client.Execution.Clients
             };
             return Execute(request);
         }
-                
+
         public Task<ExecuteCalculationResponse> Execute(ExecuteCalculationRequest request)
         {
             return _client.Post<ExecuteCalculationRequest, ExecuteCalculationResponse>($"{RoutePrefix.Calculation}?debug={request.Debug}&full={request.Full}", request);

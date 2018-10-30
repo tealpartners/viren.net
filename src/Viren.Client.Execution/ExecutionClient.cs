@@ -19,18 +19,19 @@ namespace Viren.Client.Execution
             var refreshTokenHandler = RefreshTokenHandler.CreateFallback(accessTokenCache);
             var virenHttpClient = new HttpClient(refreshTokenHandler);
             virenHttpClient.BaseAddress = new Uri(options.BaseUrl);
-            
+
             Model = new ModelClient(virenHttpClient);
             Calculation = new CalculationClient(virenHttpClient, Model);
             InteractiveRun = new InteractiveRunClient(virenHttpClient);
         }
+
         public ExecutionClient(string publicKey, string secretKey, string virenDomain, string auth0Domain)
-            : this(new VirenOptions{ClientId = publicKey, ClientSecret = secretKey, Authority = auth0Domain, BaseUrl = virenDomain})
+            : this(new VirenOptions {ClientId = publicKey, ClientSecret = secretKey, Authority = auth0Domain, BaseUrl = virenDomain})
         {
         }
 
         public ExecutionClient(string publicKey, string secretKey, Environment environment)
-            :this(new VirenOptions().UseEnvironment(environment, publicKey, secretKey))
+            : this(new VirenOptions().UseEnvironment(environment, publicKey, secretKey))
         {
         }
 

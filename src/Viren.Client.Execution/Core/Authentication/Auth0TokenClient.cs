@@ -33,12 +33,9 @@ namespace Viren.Client.Execution.Core.Authentication
 
 
             var response = await _client.PostAsync("oauth/token", httpContent).ConfigureAwait(false);
-            
+
             var responseString = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
-            if (!response.IsSuccessStatusCode)
-            {
-                throw new InvalidOperationException($"Could not get access_token '{responseString}'. Response code: {response.StatusCode}");
-            }
+            if (!response.IsSuccessStatusCode) throw new InvalidOperationException($"Could not get access_token '{responseString}'. Response code: {response.StatusCode}");
 
             var result = JsonConvert.DeserializeObject<Auth0Response>(responseString, _jsonSerializerSettings);
 

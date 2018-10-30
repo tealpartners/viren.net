@@ -4,7 +4,7 @@ using Newtonsoft.Json;
 
 namespace Viren.Client.Execution.Core.Helpers
 {
-    internal static class StringContentExtensions 
+    internal static class StringContentExtensions
     {
         public static StringContent ToStringContent(this object request, JsonSerializerSettings jsonSerializerSettings)
         {

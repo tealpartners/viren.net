@@ -30,18 +30,13 @@ namespace Viren.Client.Execution.Core.Helpers
         {
             var requestMessage = new HttpRequestMessage(httpMethod, url);
 
-            if (httpMethod != HttpMethod.Get)
-            {
-                requestMessage.Content = request.ToStringContent(JsonSerializerSettings);
-            }
+            if (httpMethod != HttpMethod.Get) requestMessage.Content = request.ToStringContent(JsonSerializerSettings);
 
-            var response = await client.SendAsync(requestMessage).ConfigureAwait(false);;
+            var response = await client.SendAsync(requestMessage).ConfigureAwait(false);
+            ;
 
             var responseString = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
-            if (response.IsSuccessStatusCode)
-            {
-                return JsonConvert.DeserializeObject<TResponse>(responseString, JsonSerializerSettings);
-            }
+            if (response.IsSuccessStatusCode) return JsonConvert.DeserializeObject<TResponse>(responseString, JsonSerializerSettings);
 
             throw new Exception(responseString);
         }
