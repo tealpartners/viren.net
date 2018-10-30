@@ -1,14 +1,22 @@
+using System.Net.Http;
 using System.Threading.Tasks;
+using Viren.Client.Execution.Clients.Helpers;
 using Viren.Client.Execution.Requests;
 using Viren.Client.Execution.Requests.InteractiveRun;
 
 namespace Viren.Client.Execution.Clients
 {
-    public class InteractiveRunClient
+    public interface IInteractiveRunClient
     {
-        private readonly ExecutionClient _client;
+        Task<GetInteractiveModelDataResponse> GetVersion(string project, string model, int version, string block, bool? draft = null);
+        Task<GetInteractiveModelDataResponse> GetVersion(GetInteractiveModelDataRequest request);
+    }
 
-        public InteractiveRunClient(ExecutionClient client)
+    public class InteractiveRunClient : IInteractiveRunClient
+    {
+        private readonly HttpClient _client;
+
+        public InteractiveRunClient(HttpClient client)
         {
             _client = client;
         }
@@ -28,9 +36,7 @@ namespace Viren.Client.Execution.Clients
 
         public Task<GetInteractiveModelDataResponse> GetVersion(GetInteractiveModelDataRequest request)
         {
-            return _client.Get<GetInteractiveModelDataResponse>($"{RoutePrefix.InteractiveModelData}/{_client.BuildUrl(request)}/{request.Block}?Draft={request.Draft}");
+            return _client.Get<GetInteractiveModelDataResponse>($"{RoutePrefix.InteractiveModelData}/{UrlBuilder.BuildUrl(request)}/{request.Block}?Draft={request.Draft}");
         }
-
-     
     }
 }

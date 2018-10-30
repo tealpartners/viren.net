@@ -1,28 +1,45 @@
 using System;
 using System.Collections.Generic;
+using System.Net.Http;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
+using Viren.Client.Execution.Clients.Helpers;
 using Viren.Client.Execution.Requests;
 using Viren.Client.Execution.Requests.Calculations;
 
 namespace Viren.Client.Execution.Clients
 {
-    public class CalculationClient
+    public interface ICalculationClient
     {
-        private readonly ExecutionClient _client;
+        Task<ExecuteCalculationResponse> ExecuteWithLatestVersion(string project, string model, bool draft, string entryPoint,
+            IDictionary<string, object> globals = null, IDictionary<string, object> root = null, bool? debug = null, bool? full = null, string requestId = null);
 
-        public CalculationClient(ExecutionClient client)
+        Task<ExecuteCalculationResponse> Execute(string project, string model, int version, string entryPoint,
+            IDictionary<string, object> globals = null, IDictionary<string, object> root = null,
+            int? revision = null, bool? debug = null, bool? full = null, string requestId = null);
+
+        Task<ExecuteCalculationResponse> Execute(ExecuteCalculationRequest request);
+        Task<OptimizeCalculationResponse> Optimize(OptimizeCalculationRequest request);
+    }
+
+    public class CalculationClient : ICalculationClient
+    {
+        private readonly HttpClient _client;
+        private readonly IModelClient _modelClient;
+
+        public CalculationClient(HttpClient client, IModelClient modelClient)
         {
             _client = client;
+            _modelClient = modelClient;
         }
 
-        public Task<ExecuteCalculationResponse> ExecuteWithLatestVersion(string project, string model, bool draft, string entryPoint,
+        public async Task<ExecuteCalculationResponse> ExecuteWithLatestVersion(string project, string model, bool draft, string entryPoint,
             IDictionary<string, object> globals = null, IDictionary<string, object> root = null, bool? debug = null, bool? full = null, string requestId = null)
         {
-            var versionTask = _client.Model.GetVersion(project, model, draft);
-            versionTask.Wait();
-            var version = versionTask.Result.Version;
-            var revision = versionTask.Result.Revision;
-            return Execute(project, model, version, entryPoint, globals, root, revision, debug, full, requestId);
+            var versionTask = await _modelClient.GetVersion(project, model, draft);
+            var version = versionTask.Version;
+            var revision = versionTask.Revision;
+            return await Execute(project, model, version, entryPoint, globals, root, revision, debug, full, requestId);
         }
         
         public Task<ExecuteCalculationResponse> Execute(string project, string model, int version, string entryPoint,
