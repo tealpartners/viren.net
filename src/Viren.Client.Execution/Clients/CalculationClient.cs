@@ -21,12 +21,12 @@ namespace Viren.Client.Execution.Clients
         Task<OptimizeCalculationResponse> Optimize(OptimizeCalculationRequest request);
     }
 
-    internal class CalculationClient : ICalculationClient
+    public class CalculationClient : ICalculationClient
     {
         private readonly HttpClient _client;
         private readonly IModelClient _modelClient;
 
-        internal CalculationClient(HttpClient client, IModelClient modelClient)
+        public CalculationClient(HttpClient client, IModelClient modelClient)
         {
             _client = client;
             _modelClient = modelClient;

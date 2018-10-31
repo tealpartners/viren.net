@@ -8,12 +8,12 @@ using Viren.Client.Execution.Core.Serialization;
 
 namespace Viren.Client.Execution.Core.Authentication
 {
-    internal class Auth0TokenClient
+    public class Auth0TokenClient
     {
         private readonly HttpClient _client;
         private readonly Auth0SerializerSettings _jsonSerializerSettings;
 
-        internal Auth0TokenClient(HttpClient client)
+        public Auth0TokenClient(HttpClient client)
         {
             _client = client;
             _jsonSerializerSettings = new Auth0SerializerSettings();
