@@ -1,8 +1,19 @@
 [![Build status](https://tealpartners.visualstudio.com/Viren.Net%20Client/_apis/build/status/Viren.Net-CI)](https://tealpartners.visualstudio.com/Viren.Net%20Client/_build/latest?definitionId=76)
-[![NuGet version](https://badge.fury.io/nu/Viren.Client.Execution.svg)](https://badge.fury.io/nu/Viren.Client.Execution)
-
 # Viren.NET
 .NET client for the Viren API 
+
+## Packages
+| Package                                        | Version  |
+| ---------------------------------------------- | ---------|
+| Viren.Core                                     | [![NuGet version](https://badge.fury.io/nu/Viren.Core.svg)](https://badge.fury.io/nu/Viren.Core)|
+| Viren.Execution                                | [![NuGet version](https://badge.fury.io/nu/Viren.Execution.svg)](https://badge.fury.io/nu/Viren.Execution) |
+| Viren.Execution.Extensions.DependencyInjection | [![NuGet version](https://badge.fury.io/nu/Viren.Execution.Extensions.DependencyInjection.svg)](https://badge.fury.io/nu/Viren.Execution.Extensions.DependencyInjection) |
+
+
+
+
+
+
 
 ## Examples
 
