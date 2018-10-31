@@ -1,32 +1,21 @@
 ﻿using System;
 using System.Threading;
 using System.Threading.Tasks;
-using Microsoft.Extensions.Options;
 
 namespace Viren.Client.Execution.Core.Authentication
 {
-    internal class AccessTokenCache
+    public class AccessTokenCache
     {
         private static readonly TimeSpan LockTimeout = TimeSpan.FromSeconds(2);
         private readonly Auth0TokenClient _auth0TokenClient;
         private readonly SemaphoreSlim _lock = new SemaphoreSlim(1, 1);
-        private readonly VirenOptions _virenConfig;
+        private readonly VirenExecutionOptions _virenConfig;
         private string _accessToken;
 
-        private AccessTokenCache(Auth0TokenClient auth0TokenClient, VirenOptions virenConfig)
+        public AccessTokenCache(Auth0TokenClient auth0TokenClient, VirenExecutionOptions virenConfig)
         {
             _auth0TokenClient = auth0TokenClient;
             _virenConfig = virenConfig;
-        }
-
-        public AccessTokenCache(Auth0TokenClient auth0TokenClient, IOptions<VirenOptions> virenConfig)
-            : this(auth0TokenClient, virenConfig.Value)
-        {
-        }
-
-        public static AccessTokenCache CreateFallback(Auth0TokenClient auth0TokenClient, VirenOptions virenConfig)
-        {
-            return new AccessTokenCache(auth0TokenClient, virenConfig);
         }
 
         internal async Task<string> GetAccessToken(bool refresh, CancellationToken cancellationToken)

@@ -5,27 +5,27 @@ namespace Viren.Client.Execution.Core.Helpers
 {
     public static class VirenOptionsEnvironmentExtensions
     {
-        public static VirenOptions UseProduction(this VirenOptions options, string clientId, string clientSecret)
+        public static VirenExecutionOptions UseProduction(this VirenExecutionOptions options, string clientId, string clientSecret)
         {
             return options.Use(clientId, clientSecret, "https://execution.viren.be", "https://teal-calculation.eu.auth0.com");
         }
 
-        public static VirenOptions UseAcceptance(this VirenOptions options, string clientId, string clientSecret)
+        public static VirenExecutionOptions UseAcceptance(this VirenExecutionOptions options, string clientId, string clientSecret)
         {
             return options.Use(clientId, clientSecret, "https://execution-acc.viren.be", "https://teal-calculation-acc.eu.auth0.com");
         }
 
-        public static VirenOptions UseDevelopment(this VirenOptions options, string clientId, string clientSecret)
+        public static VirenExecutionOptions UseDevelopment(this VirenExecutionOptions options, string clientId, string clientSecret)
         {
             return options.Use(clientId, clientSecret, "https://execution-dev.viren.be", "https://teal-calculation-dev.eu.auth0.com");
         }
 
-        public static VirenOptions UseLocal(this VirenOptions options, string clientId, string clientSecret)
+        public static VirenExecutionOptions UseLocal(this VirenExecutionOptions options, string clientId, string clientSecret)
         {
             return options.Use(clientId, clientSecret, "http://dev.calc-exec.be", "https://teal-calculation-dev.eu.auth0.com");
         }
 
-        public static VirenOptions Use(this VirenOptions options, string clientId, string clientSecret, string baseUrl,
+        public static VirenExecutionOptions Use(this VirenExecutionOptions options, string clientId, string clientSecret, string baseUrl,
             string authority)
         {
             options.ClientId = clientId;
@@ -36,7 +36,7 @@ namespace Viren.Client.Execution.Core.Helpers
         }
 
 
-        public static VirenOptions UseEnvironment(this VirenOptions options, Environment environment, string clientId, string clientSecret)
+        public static VirenExecutionOptions UseEnvironment(this VirenExecutionOptions options, Environment environment, string clientId, string clientSecret)
         {
             switch (environment)
             {

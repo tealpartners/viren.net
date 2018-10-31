@@ -1,6 +1,6 @@
 namespace Viren.Client.Execution.Core
 {
-    public class VirenOptions
+    public class VirenExecutionOptions
     {
         public string BaseUrl { get; set; }
         public string Authority { get; set; }

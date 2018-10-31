@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Viren.Client.Execution.Core.Authentication
 {
-    internal class RefreshTokenHandler : DelegatingHandler
+    public class RefreshTokenHandler : DelegatingHandler
     {
         private readonly AccessTokenCache _accessTokenCache;
 

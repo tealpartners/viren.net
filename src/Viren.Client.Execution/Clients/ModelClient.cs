@@ -17,11 +17,11 @@ namespace Viren.Client.Execution.Clients
         Task<GetLookupTablesResponse> GetTables(GetLookupTablesRequest request);
     }
 
-    internal class ModelClient : IModelClient
+    public class ModelClient : IModelClient
     {
         private readonly HttpClient _client;
 
-        internal ModelClient(HttpClient client)
+        public ModelClient(HttpClient client)
         {
             _client = client;
         }

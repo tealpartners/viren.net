@@ -1,11 +1,12 @@
 using System.Net.Http;
 using Viren.Client.Execution.Clients;
+using Viren.Client.Execution.Core;
 
-namespace Viren.Client.Execution.Core
+namespace Viren.Execution.Extensions.DependencyInjection
 {
-    internal class VirenClient : IVirenClient
+    internal class VirenExecutionClient : IVirenExecutionClient
     {
-        internal VirenClient(HttpClient client)
+        public VirenExecutionClient(HttpClient client)
         {
             Model = new ModelClient(client);
             Calculation = new CalculationClient(client, Model);

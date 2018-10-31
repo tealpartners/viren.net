@@ -12,11 +12,11 @@ namespace Viren.Client.Execution.Clients
         Task<GetInteractiveModelDataResponse> GetVersion(GetInteractiveModelDataRequest request);
     }
 
-    internal class InteractiveRunClient : IInteractiveRunClient
+    public class InteractiveRunClient : IInteractiveRunClient
     {
         private readonly HttpClient _client;
 
-        internal InteractiveRunClient(HttpClient client)
+        public InteractiveRunClient(HttpClient client)
         {
             _client = client;
         }
