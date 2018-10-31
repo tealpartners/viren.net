@@ -1,8 +1,8 @@
 using System;
 using Microsoft.Extensions.DependencyInjection;
-using Viren.Client.Execution.Core;
-using Viren.Client.Execution.Core.Helpers;
-using Environment = Viren.Client.Execution.Core.Enums.Environment;
+using Viren.Core;
+using Viren.Core.Helpers;
+using Environment = Viren.Core.Enums.Environment;
 
 namespace Viren.Execution.Extensions.DependencyInjection
 {
