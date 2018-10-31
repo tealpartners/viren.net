@@ -1,6 +1,5 @@
 using System.Net.Http;
-using Viren.Client.Execution.Clients;
-using Viren.Client.Execution.Core;
+using Viren.Execution.Clients;
 
 namespace Viren.Execution.Extensions.DependencyInjection
 {

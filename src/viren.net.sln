@@ -3,9 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28010.2026
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Viren.Client.Execution", "Viren.Client.Execution\Viren.Client.Execution.csproj", "{1FD2C3AA-7C05-43C3-9FE0-1376CC668299}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Viren.Execution", "Viren.Execution\Viren.Execution.csproj", "{1FD2C3AA-7C05-43C3-9FE0-1376CC668299}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Viren.Execution.Extensions.DependencyInjection", "Viren.Execution.Extensions.DependencyInjection\Viren.Execution.Extensions.DependencyInjection.csproj", "{BE4E8A69-6D49-45BA-84AB-7B83BE08BDC6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Viren.Execution.Extensions.DependencyInjection", "Viren.Execution.Extensions.DependencyInjection\Viren.Execution.Extensions.DependencyInjection.csproj", "{BE4E8A69-6D49-45BA-84AB-7B83BE08BDC6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Viren.Core", "Viren.Core\Viren.Core.csproj", "{22120959-586C-4EA7-A76A-ECB5F5756B3F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{BE4E8A69-6D49-45BA-84AB-7B83BE08BDC6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BE4E8A69-6D49-45BA-84AB-7B83BE08BDC6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BE4E8A69-6D49-45BA-84AB-7B83BE08BDC6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{22120959-586C-4EA7-A76A-ECB5F5756B3F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{22120959-586C-4EA7-A76A-ECB5F5756B3F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{22120959-586C-4EA7-A76A-ECB5F5756B3F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{22120959-586C-4EA7-A76A-ECB5F5756B3F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,8 +1,9 @@
 using System;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
-using Viren.Client.Execution.Core;
-using Viren.Client.Execution.Core.Authentication;
+using Viren.Core;
+using Viren.Core.Authentication;
+using Viren.Execution.Clients;
 
 namespace Viren.Execution.Extensions.DependencyInjection
 {
