@@ -11,6 +11,8 @@ namespace Viren.Execution.Requests.Calculations
         public OptimizeCalculationRequest()
         {
             OptimizeInputs = new List<OptimizeInputInfoDto>();
+            Root = new Dictionary<string, object>();
+            Globals = new Dictionary<string, object>();
         }
 
         public string Project { get; set; }
