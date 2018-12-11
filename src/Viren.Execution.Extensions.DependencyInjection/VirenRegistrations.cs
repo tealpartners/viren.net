@@ -57,7 +57,7 @@ namespace Viren.Execution.Extensions.DependencyInjection
                     client.BaseAddress = new Uri(options.BaseUrl);
                 })
                 .AddHttpMessageHandler<RefreshTokenHandler>()
-                .AddTypedClient<IVirenExecutionClient, VirenExecutionClient>();
+                .AddTypedClient<IVirenExecutionClient, ExecutionClient>();
 
             extendVirenHttpClient?.Invoke(virenClientBuilder);
             return this;

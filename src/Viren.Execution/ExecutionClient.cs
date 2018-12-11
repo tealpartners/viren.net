@@ -1,7 +1,6 @@
-﻿using System;
-using System.Net.Http;
+﻿using System.Net.Http;
+using System.Transactions;
 using Viren.Core;
-using Viren.Core.Authentication;
 using Viren.Core.Helpers;
 using Viren.Execution.Clients;
 using Environment = Viren.Core.Enums.Environment;
@@ -10,29 +9,17 @@ namespace Viren.Execution
 {
     public class ExecutionClient : IVirenExecutionClient
     {
-        private ExecutionClient(VirenExecutionOptions options)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="httpClient">inject http client(.NET CORE must use DI for httpClient)
+        /// https://www.stevejgordon.co.uk/introduction-to-httpclientfactory-aspnetcore
+        /// </param>
+        public ExecutionClient(HttpClient httpClient)
         {
-            var auth0HttpClient = new HttpClient {BaseAddress = new Uri(options.Authority)};
-
-            var auth0TokenClient = new Auth0TokenClient(auth0HttpClient);
-            var accessTokenCache = new AccessTokenCache(auth0TokenClient, options);
-            var refreshTokenHandler = RefreshTokenHandler.CreateFallback(accessTokenCache);
-            var virenHttpClient = new HttpClient(refreshTokenHandler);
-            virenHttpClient.BaseAddress = new Uri(options.BaseUrl);
-
-            Model = new ModelClient(virenHttpClient);
-            Calculation = new CalculationClient(virenHttpClient, Model);
-            InteractiveRun = new InteractiveRunClient(virenHttpClient);
-        }
-
-        public ExecutionClient(string publicKey, string secretKey, string virenDomain, string auth0Domain)
-            : this(new VirenExecutionOptions {ClientId = publicKey, ClientSecret = secretKey, Authority = auth0Domain, BaseUrl = virenDomain})
-        {
-        }
-
-        public ExecutionClient(string publicKey, string secretKey, Environment environment)
-            : this(new VirenExecutionOptions().UseEnvironment(environment, publicKey, secretKey))
-        {
+            Model = new ModelClient(httpClient);
+            Calculation = new CalculationClient(httpClient, Model);
+            InteractiveRun = new InteractiveRunClient(httpClient);
         }
 
         public ICalculationClient Calculation { get; }

@@ -1,29 +1,26 @@
-<Project Sdk="Microsoft.NET.Sdk">
-
-    <PropertyGroup>
-        <TargetFramework>netstandard2.0</TargetFramework>
-        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-        <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-        <Version>0.3.0</Version>
-        <Authors>Teal Partners</Authors>
-        <Product>Viren execution .NET client</Product>
-        <RepositoryUrl>https://github.com/tealpartners/viren.net</RepositoryUrl>
-        <PackageProjectUrl>https://www.viren.be/</PackageProjectUrl>
-        <PackageLicenseUrl>https://github.com/tealpartners/viren.net/blob/master/LICENSE</PackageLicenseUrl>
-        <ApplicationIcon>icon.ico</ApplicationIcon>
-        <Description>.NET client for the Viren Execution API</Description>
-        <Copyright>© 2018 Teal Partners</Copyright>
-        <PackageIconUrl>https://raw.githubusercontent.com/tealpartners/viren.net/master/assets/icon.png</PackageIconUrl>
-        <PackageTags>Viren; API; Client</PackageTags>
-        <SignAssembly>false</SignAssembly>
-        <DelaySign>false</DelaySign>
-        <AssemblyOriginatorKeyFile>VirenExecutionKey.pfx</AssemblyOriginatorKeyFile>
-        <AssemblyName>Viren.Execution</AssemblyName>
-        <RootNamespace>Viren.Execution</RootNamespace>
-    </PropertyGroup>
-
-    <ItemGroup>
-      <ProjectReference Include="..\Viren.Core\Viren.Core.csproj" />
-    </ItemGroup>
-
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <Version>0.3.0</Version>
+    <Authors>Teal Partners</Authors>
+    <Product>Viren execution .NET client</Product>
+    <RepositoryUrl>https://github.com/tealpartners/viren.net</RepositoryUrl>
+    <PackageProjectUrl>https://www.viren.be/</PackageProjectUrl>
+    <PackageLicenseUrl>https://github.com/tealpartners/viren.net/blob/master/LICENSE</PackageLicenseUrl>
+    <ApplicationIcon>icon.ico</ApplicationIcon>
+    <Description>.NET client for the Viren Execution API</Description>
+    <Copyright>© 2018 Teal Partners</Copyright>
+    <PackageIconUrl>https://raw.githubusercontent.com/tealpartners/viren.net/master/assets/icon.png</PackageIconUrl>
+    <PackageTags>Viren; API; Client</PackageTags>
+    <SignAssembly>false</SignAssembly>
+    <DelaySign>false</DelaySign>
+    <AssemblyOriginatorKeyFile>VirenExecutionKey.pfx</AssemblyOriginatorKeyFile>
+    <AssemblyName>Viren.Execution</AssemblyName>
+    <RootNamespace>Viren.Execution</RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Viren.Core\Viren.Core.csproj" />
+  </ItemGroup>
 </Project>

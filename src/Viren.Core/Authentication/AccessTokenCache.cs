@@ -21,14 +21,16 @@ namespace Viren.Core.Authentication
         internal async Task<string> GetAccessToken(bool refresh, CancellationToken cancellationToken)
         {
             var currentBeforeLock = _accessToken;
-            if (!await _lock.WaitAsync(LockTimeout, cancellationToken).ConfigureAwait(false)) throw new Exception($"Lock timeout not released within {LockTimeout} in {typeof(AccessTokenCache)}");
+            if (!await _lock.WaitAsync(LockTimeout, cancellationToken).ConfigureAwait(false))
+            {
+                throw new Exception($"Lock timeout not released within {LockTimeout} in {typeof(AccessTokenCache)}");
+            }
 
             try
             {
                 var current = _accessToken;
                 // Access token has been refreshed or current is set and refresh is false
-                if (!string.Equals(current, currentBeforeLock) ||
-                    refresh == false && !string.IsNullOrEmpty(current))
+                if (!string.Equals(current, currentBeforeLock) || refresh == false && !string.IsNullOrEmpty(current))
                     return current;
 
                 _accessToken = current = await _auth0TokenClient.GetAccessToken(
