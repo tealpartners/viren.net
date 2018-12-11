@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Viren.Core.Dtos;
 using Viren.Execution.Dtos.OptimizeCalculation;
 
 namespace Viren.Execution.Requests.Calculations
@@ -35,5 +36,8 @@ namespace Viren.Execution.Requests.Calculations
         public Dictionary<string, object> Input { get; set; }
         public string AbortReason { get; set; }
         public List<OptimizeAttempt> Attempts { get; set; }
+        
+        public bool IsValid { get; set; }
+        public List<ValidationMessage> ValidationMessages { get; set; }
     }
 }
