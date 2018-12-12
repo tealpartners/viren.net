@@ -16,9 +16,18 @@
 
 
 ## Examples
+### Creating an client
+```
+var auth0ClientId = "";
+var auth0ClientSecret = "";
+var environment = Environment.Production;
+var httpClient = VirenHttpClientFactory.Create(auth0ClientId, auth0ClientSecret, environment);
+var executionClient = new ExecutionClient(httpClient);
+```
 
 ### Execute calculation
-```var client = new ExecutionClient(clientId, clientSecret, Environment.Production);
+```
+var client = new ExecutionClient(clientId, clientSecret, Environment.Production);
 var request = new ExecuteCalculationRequest()
 {
     Project = "Project",
@@ -37,7 +46,8 @@ return calculation.Result.Result;
 ```
 
 ### Get tables from model
-```var client = new ExecutionClient(clientId, clientSecret, Environment.Production);
+```
+var client = new ExecutionClient(clientId, clientSecret, Environment.Production);
 var request = new GetLookupTablesRequest()
 {
     Project = "Project",
