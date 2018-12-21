@@ -25,6 +25,8 @@ namespace Viren.Execution.Requests.Calculations
 
         public bool? Debug { get; set; }
         public bool? Full { get; set; }
+
+        public string ClientSessionId { get; set; }
     }
 
     public class ExecuteCalculationsAsyncResponse

@@ -16,7 +16,7 @@
 
 
 ## Examples
-### Creating an client
+### Creating a client
 ```
 var auth0ClientId = "";
 var auth0ClientSecret = "";
@@ -35,10 +35,13 @@ var request = new ExecuteCalculationRequest()
     Version = 1,
     Revision = null,
     Root = new Dictionary<string, object>
-        {
-            { "Input", 5 }
-        },
-    EntryPoint = "RootBlock"
+    {
+        { "Input", 5 }
+    },
+    EntryPoint = "RootBlock",
+
+    // Optionally specify an identifier to mark multiple calls as part of a single user session
+    ClientSessionId = "my-session-identifier"
 };
 var calculation = client.Calculation.Execute(request);
 calculation.Wait();
