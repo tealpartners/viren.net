@@ -19,6 +19,8 @@ namespace Viren.Execution.Requests.Calculations
         public IDictionary<string, object> Globals { get; set; }
         public bool? Debug { get; set; }
         public bool? Full { get; set; }
+
+        public string ClientSessionId { get; set; }
     }
 
     public class ExecuteTestCalculationResponse

@@ -7,6 +7,8 @@ namespace Viren.Execution.Requests.Calculations
     public class DebugCalculationRequest
     {
         public string Id { get; set; }
+
+        public string ClientSessionId { get; set; }
     }
 
 

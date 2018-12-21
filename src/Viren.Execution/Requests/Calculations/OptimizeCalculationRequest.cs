@@ -28,6 +28,8 @@ namespace Viren.Execution.Requests.Calculations
 
         public IList<OptimizeInputInfoDto> OptimizeInputs { get; set; }
         public OptimizeOutputInfoDto OptimizeOutput { get; set; }
+
+        public string ClientSessionId { get; set; }
     }
 
     public class OptimizeCalculationResponse

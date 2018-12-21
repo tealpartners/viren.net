@@ -22,6 +22,8 @@ namespace Viren.Execution.Requests.Calculations
         public bool? Full { get; set; }
 
         public IList<CalculationInputDto> CalculationInputs { get; set; }
+
+        public string ClientSessionId { get; set; }
     }
 
     public class ExecuteCalculationsResponse
