@@ -3,7 +3,7 @@
     <TargetFramework>netstandard2.0</TargetFramework>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-    <Version>0.5.1</Version>
+    <Version>0.5.2</Version>
     <Authors>Teal Partners</Authors>
     <Product>Viren execution .NET client</Product>
     <RepositoryUrl>https://github.com/tealpartners/viren.net</RepositoryUrl>
@@ -11,7 +11,7 @@
     <PackageLicenseUrl>https://github.com/tealpartners/viren.net/blob/master/LICENSE</PackageLicenseUrl>
     <ApplicationIcon>icon.ico</ApplicationIcon>
     <Description>.NET client for the Viren Execution API</Description>
-    <Copyright>© 2018 Teal Partners</Copyright>
+    <Copyright>© 2018-2019 Teal Partners</Copyright>
     <PackageIconUrl>https://raw.githubusercontent.com/tealpartners/viren.net/master/assets/icon.png</PackageIconUrl>
     <PackageTags>Viren; API; Client</PackageTags>
     <SignAssembly>false</SignAssembly>

@@ -4,12 +4,12 @@
     <TargetFramework>netstandard2.0</TargetFramework>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-    <Version>0.5.1</Version>
+    <Version>0.5.2</Version>
     <Authors>Teal Partners</Authors>
     <Company>Teal Partners</Company>
     <Product>Viren .NET client core library</Product>
     <Description>Viren .NET client core library</Description>
-    <Copyright>© 2018 Teal Partners</Copyright>
+    <Copyright>© 2018-2019 Teal Partners</Copyright>
     <PackageLicenseUrl>https://github.com/tealpartners/viren.net/blob/master/LICENSE</PackageLicenseUrl>
     <PackageProjectUrl>https://www.viren.be/</PackageProjectUrl>
     <PackageIconUrl>https://raw.githubusercontent.com/tealpartners/viren.net/master/assets/icon.png</PackageIconUrl>

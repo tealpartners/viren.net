@@ -18,6 +18,7 @@ namespace Viren.Execution.Clients
             int? revision = null, bool? debug = null, bool? full = null, string requestId = null);
 
         Task<ExecuteCalculationResponse> Execute(ExecuteCalculationRequest request);
+        Task<ExecuteCalculationsResponse> Execute(ExecuteCalculationsRequest request);
         Task<OptimizeCalculationResponse> Optimize(OptimizeCalculationRequest request);
     }
 
@@ -70,6 +71,11 @@ namespace Viren.Execution.Clients
         public Task<ExecuteCalculationResponse> Execute(ExecuteCalculationRequest request)
         {
             return _client.Post<ExecuteCalculationRequest, ExecuteCalculationResponse>($"{RoutePrefix.Calculation}?debug={request.Debug}&full={request.Full}", request);
+        }
+
+        public Task<ExecuteCalculationsResponse> Execute(ExecuteCalculationsRequest request)
+        {
+            return _client.Post<ExecuteCalculationsRequest, ExecuteCalculationsResponse>($"{RoutePrefix.Calculations}?debug={request.Debug}&full={request.Full}", request);
         }
 
         public Task<OptimizeCalculationResponse> Optimize(OptimizeCalculationRequest request)
