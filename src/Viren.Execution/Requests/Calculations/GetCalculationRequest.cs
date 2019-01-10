@@ -11,6 +11,11 @@ namespace Viren.Execution.Requests.Calculations
 
     public class GetCalculationResponse
     {
+        public GetCalculationResponse()
+        {
+            ValidationMessages = new List<ValidationMessage>();
+        }
+        
         public string Id { get; set; }
         public Guid? ConversationId { get; set; }
         public Guid? ImportId { get; set; }

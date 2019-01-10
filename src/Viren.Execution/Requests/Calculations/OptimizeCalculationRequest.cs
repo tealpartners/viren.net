@@ -34,6 +34,10 @@ namespace Viren.Execution.Requests.Calculations
 
     public class OptimizeCalculationResponse
     {
+        public OptimizeCalculationResponse()
+        {
+            ValidationMessages = new List<ValidationMessage>();
+        }
         public Dictionary<string, object> Result { get; set; }
         public Dictionary<string, object> Input { get; set; }
         public string AbortReason { get; set; }

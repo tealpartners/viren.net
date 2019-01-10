@@ -19,6 +19,13 @@ namespace Viren.Execution.Requests.Models
 
     public class GetLookupTablesResponse
     {
+        public GetLookupTablesResponse()
+        {
+            ValidationMessages = new List<ValidationMessage>();    
+        }
+
         public Dictionary<string, JArray> Result { get; set; }
+        
+        public List<ValidationMessage> ValidationMessages { get; set; }
     }
 }
