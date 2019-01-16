@@ -11,7 +11,7 @@ namespace Viren.Core.Authentication
     {
         private readonly AccessTokenCache _accessTokenCache;
 
-        private RefreshTokenHandler(AccessTokenCache accessTokenCache): base(new HttpClientHandler())
+        public RefreshTokenHandler(AccessTokenCache accessTokenCache)
         {
             _accessTokenCache = accessTokenCache;
         }
@@ -26,14 +26,11 @@ namespace Viren.Core.Authentication
             try
             {
                 var accessToken = await _accessTokenCache.GetAccessToken(false, cancellationToken).ConfigureAwait(false);
-            
+
                 request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
                 var response = await base.SendAsync(request, cancellationToken).ConfigureAwait(false);
 
-                if (response.StatusCode != HttpStatusCode.Unauthorized)
-                {
-                    return response;
-                }
+                if (response.StatusCode != HttpStatusCode.Unauthorized) return response;
 
                 accessToken = await _accessTokenCache.GetAccessToken(true, cancellationToken).ConfigureAwait(false);
 
@@ -46,7 +43,6 @@ namespace Viren.Core.Authentication
                 Console.WriteLine(e);
                 throw;
             }
-
         }
     }
 }
