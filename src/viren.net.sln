@@ -9,6 +9,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Viren.Execution.Extensions.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Viren.Core", "Viren.Core\Viren.Core.csproj", "{22120959-586C-4EA7-A76A-ECB5F5756B3F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Viren.Tests", "Viren.Tests\Viren.Tests.csproj", "{4640630A-13E1-46B0-A789-A5B0DA41828C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{22120959-586C-4EA7-A76A-ECB5F5756B3F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{22120959-586C-4EA7-A76A-ECB5F5756B3F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{22120959-586C-4EA7-A76A-ECB5F5756B3F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4640630A-13E1-46B0-A789-A5B0DA41828C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4640630A-13E1-46B0-A789-A5B0DA41828C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4640630A-13E1-46B0-A789-A5B0DA41828C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4640630A-13E1-46B0-A789-A5B0DA41828C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
