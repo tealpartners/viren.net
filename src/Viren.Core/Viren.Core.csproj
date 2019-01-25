@@ -3,7 +3,7 @@
   <PropertyGroup>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-    <Version>0.5.5</Version>
+    <Version>0.5.6</Version>
     <Authors>Teal Partners</Authors>
     <Company>Teal Partners</Company>
     <Product>Viren .NET client core library</Product>
