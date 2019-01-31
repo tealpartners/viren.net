@@ -1,9 +1,5 @@
 ﻿using System.Net.Http;
-using System.Transactions;
-using Viren.Core;
-using Viren.Core.Helpers;
 using Viren.Execution.Clients;
-using Environment = Viren.Core.Enums.Environment;
 
 namespace Viren.Execution
 {

@@ -1,6 +1,8 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
+    <TargetFrameworks Condition="'$(LibraryFrameworks)'==''">net46;netstandard2.0;</TargetFrameworks>
+    <TargetFrameworks Condition="'$(LibraryFrameworks)'!=''">$(LibraryFrameworks)</TargetFrameworks>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <Version>0.5.6</Version>
@@ -15,11 +17,19 @@
     <RepositoryUrl>https://github.com/tealpartners/viren.net</RepositoryUrl>
     <PackageTags>Viren; API; Client</PackageTags>
     <ApplicationIcon>icon.ico</ApplicationIcon>
-    <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
-
+  <PropertyGroup Condition="'$(TargetFramework)'=='net46'">
+    <AssemblyTitle>Viren.Core .NET Framework 4.6</AssemblyTitle>
+    <DefineConstants>$(AdditionalConstants)</DefineConstants>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(TargetFramework)'=='netstandard2.0'">
+    <AssemblyTitle>Viren.Core .NET Standard 2.0</AssemblyTitle>
+    <DefineConstants>$(AdditionalConstants)</DefineConstants>
+  </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="12.0.1" />
   </ItemGroup>
-
+  <ItemGroup Condition="'$(TargetFramework)' == 'net46'">
+    <Reference Include="System.Net.Http" />
+  </ItemGroup>
 </Project>

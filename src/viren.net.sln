@@ -7,9 +7,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Viren.Execution", "Viren.Ex
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Viren.Execution.Extensions.DependencyInjection", "Viren.Execution.Extensions.DependencyInjection\Viren.Execution.Extensions.DependencyInjection.csproj", "{BE4E8A69-6D49-45BA-84AB-7B83BE08BDC6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Viren.Core", "Viren.Core\Viren.Core.csproj", "{22120959-586C-4EA7-A76A-ECB5F5756B3F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Viren.Core", "Viren.Core\Viren.Core.csproj", "{22120959-586C-4EA7-A76A-ECB5F5756B3F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Viren.Tests", "Viren.Tests\Viren.Tests.csproj", "{4640630A-13E1-46B0-A789-A5B0DA41828C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Viren.Tests", "Viren.Tests\Viren.Tests.csproj", "{4640630A-13E1-46B0-A789-A5B0DA41828C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
