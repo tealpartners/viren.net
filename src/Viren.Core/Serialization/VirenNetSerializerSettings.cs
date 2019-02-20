@@ -8,6 +8,7 @@ namespace Viren.Core.Serialization
         {
             ContractResolver = new CamelCaseExceptDictionaryKeysResolver();
             FloatParseHandling = FloatParseHandling.Decimal;
+            DateTimeZoneHandling = DateTimeZoneHandling.Unspecified;
         }
     }
 }
