@@ -9,6 +9,8 @@ namespace Viren.Execution.Requests.Calculations.Optimize
     {
         public Z3CalculationRequest()
         {
+            Root = new Dictionary<string, object>();
+            Globals = new Dictionary<string, object>();
             Inputs = new List<Z3InputInfoDto>();
             Outputs = new List<Z3OutputInfoDto>();
         }
@@ -19,8 +21,8 @@ namespace Viren.Execution.Requests.Calculations.Optimize
 
         public string EntryPoint { get; set; }
 
-        public JObject Root { get; set; }
-        public JObject Globals { get; set; }
+        public IDictionary<string, object> Root { get; set; }
+        public IDictionary<string, object> Globals { get; set; }
 
         public List<Z3InputInfoDto> Inputs { get; set; }
         public List<Z3OutputInfoDto> Outputs { get; set; }
