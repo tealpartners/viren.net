@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Viren.Execution.Dtos.OptimizeCalculation
+namespace Viren.Execution.Dtos.Calculation.Optimize
 {
     public class OptimizeAttempt
     {

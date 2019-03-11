@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-using Viren.Execution.Dtos;
+using Viren.Execution.Dtos.Calculation;
 
 namespace Viren.Execution.Requests.Dashboard
 {

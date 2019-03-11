@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Viren.Core.Helpers;
 using Viren.Execution.Requests;
 using Viren.Execution.Requests.Calculations;
+using Viren.Execution.Requests.Calculations.Optimize;
 
 namespace Viren.Execution.Clients
 {
@@ -20,6 +21,7 @@ namespace Viren.Execution.Clients
         Task<ExecuteCalculationResponse> Execute(ExecuteCalculationRequest request);
         Task<ExecuteCalculationsResponse> Execute(ExecuteCalculationsRequest request);
         Task<OptimizeCalculationResponse> Optimize(OptimizeCalculationRequest request);
+        Task<Z3CalculationResponse> Optimize(Z3CalculationRequest request);
     }
 
     public class CalculationClient : ICalculationClient
@@ -81,6 +83,10 @@ namespace Viren.Execution.Clients
         public Task<OptimizeCalculationResponse> Optimize(OptimizeCalculationRequest request)
         {
             return _client.Post<OptimizeCalculationRequest, OptimizeCalculationResponse>($"{RoutePrefix.Calculation}/optimize", request);
+        }  
+        public Task<Z3CalculationResponse> Optimize(Z3CalculationRequest request)
+        {
+            return _client.Post<Z3CalculationRequest, Z3CalculationResponse>($"{RoutePrefix.Calculation}/optimize/z3", request);
         }
     }
 }
