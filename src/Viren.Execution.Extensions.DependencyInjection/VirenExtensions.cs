@@ -13,7 +13,7 @@ namespace Viren.Execution.Extensions.DependencyInjection
         {
             return serviceCollection.AddVirenExecution(ops => ops.UseEnvironment(environment, clientId, clientSecret));
         }
-        
+
         public static IServiceCollection AddVirenExecution(this IServiceCollection serviceCollection, Action<VirenExecutionOptions> configureOptions,
             Action<IHttpClientBuilder> extendOidcHttpClient = null,
             Action<IHttpClientBuilder> extendVirenHttpClient = null)

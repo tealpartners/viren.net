@@ -35,7 +35,7 @@ namespace Viren.Execution.Requests.Calculations
         {
             ValidationMessages = new List<ValidationMessage>();
         }
-        
+
         public IDictionary<string, object> Result { get; set; }
 
         public bool IsValid { get; set; }

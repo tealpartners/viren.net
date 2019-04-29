@@ -29,7 +29,7 @@ namespace Viren.Execution.Requests.Calculations
         {
             ValidationMessages = new List<ValidationMessage>();
         }
-        
+
         public ParameterNameValueTypeDto[] Result { get; set; }
         public IDictionary<string, object> FullResult { get; set; }
         public IList<ValidationMessage> ValidationMessages { get; set; }

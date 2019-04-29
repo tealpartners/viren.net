@@ -2,7 +2,7 @@
   <PropertyGroup>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-    <Version>0.7.1</Version>
+    <Version>0.7.2</Version>
     <Authors>Teal Partners</Authors>
     <Product>Viren execution .NET client</Product>
     <RepositoryUrl>https://github.com/tealpartners/viren.net</RepositoryUrl>

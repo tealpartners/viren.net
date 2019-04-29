@@ -10,8 +10,8 @@ namespace Viren.Execution.Dtos.Calculation
         public string Id { get; set; }
         public Guid? ConversationId { get; set; }
         public Guid? ImportId { get; set; }
-        public string ClientSessionId { get; set;  }
-        public string CalculationType { get; set;  }
+        public string ClientSessionId { get; set; }
+        public string CalculationType { get; set; }
 
         public string Project { get; set; }
         public string Model { get; set; }

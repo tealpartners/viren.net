@@ -11,8 +11,8 @@ namespace Viren.Execution
     /// </summary>
     public class VirenHttpClientFactory
     {
-        private static AccessTokenCache _accesTokenCache = null;
-        
+        private static AccessTokenCache _accessTokenCache = null;
+
         public static HttpClient Create(string publicKey, string secretKey, string virenDomain, string auth0Domain)
         {
             return Create(new VirenExecutionOptions {ClientId = publicKey, ClientSecret = secretKey, Authority = auth0Domain, BaseUrl = virenDomain});
@@ -32,15 +32,15 @@ namespace Viren.Execution
         /// <returns></returns>
         public static HttpClient Create(VirenExecutionOptions options)
         {
-            if (_accesTokenCache == null)
+            if (_accessTokenCache == null)
             {
                 var auth0HttpClient = new HttpClient {BaseAddress = new Uri(options.Authority)};
 
                 var auth0TokenClient = new Auth0TokenClient(auth0HttpClient);
-                _accesTokenCache = new AccessTokenCache(auth0TokenClient, options);                
+                _accessTokenCache = new AccessTokenCache(auth0TokenClient, options);
             }
 
-            var refreshTokenHandler = RefreshTokenHandler.CreateFallback(_accesTokenCache);
+            var refreshTokenHandler = RefreshTokenHandler.CreateFallback(_accessTokenCache);
 
 
             var virenHttpClient = new HttpClient(refreshTokenHandler)

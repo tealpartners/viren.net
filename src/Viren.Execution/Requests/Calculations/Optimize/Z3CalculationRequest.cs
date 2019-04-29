@@ -40,14 +40,12 @@ namespace Viren.Execution.Requests.Calculations.Optimize
     {
         public Z3CalculationResponse()
         {
-            ValidationMessages= new List<ValidationMessage>();
-            Results= new List<Z3FullResultDto>();
+            ValidationMessages = new List<ValidationMessage>();
+            Results = new List<Z3FullResultDto>();
         }
 
         public IList<Z3FullResultDto> Results { get; set; }
         public bool IsValid { get; set; }
         public List<ValidationMessage> ValidationMessages { get; set; }
     }
-
-
 }

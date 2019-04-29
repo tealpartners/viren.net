@@ -36,7 +36,7 @@ namespace Viren.Execution.Extensions.DependencyInjection
 
         public VirenRegistrations AddAccessTokenCache()
         {
-            _services.AddSingleton(x => 
+            _services.AddSingleton(x =>
                 new AccessTokenCache(
                     x.GetRequiredService<Auth0TokenClient>(),
                     x.GetRequiredService<IOptions<VirenExecutionOptions>>().Value));

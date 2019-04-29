@@ -18,7 +18,7 @@ namespace Viren.Execution.Requests.Calculations
         {
             ValidationMessages = new List<ValidationMessage>();
         }
-        
+
         public dynamic CalculationResult { get; set; }
 
         public ModelDebugParsingDto ModelParsing { get; set; }

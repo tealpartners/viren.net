@@ -38,11 +38,12 @@ namespace Viren.Execution.Requests.Calculations.Optimize
         {
             ValidationMessages = new List<ValidationMessage>();
         }
+
         public Dictionary<string, object> Result { get; set; }
         public Dictionary<string, object> Input { get; set; }
         public string AbortReason { get; set; }
         public List<OptimizeAttempt> Attempts { get; set; }
-        
+
         public bool IsValid { get; set; }
         public List<ValidationMessage> ValidationMessages { get; set; }
     }

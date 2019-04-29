@@ -2,7 +2,7 @@
 
 namespace Viren.Execution.Dtos.Calculation.Optimize.Z3
 {
-    public class Z3FullResultDto: Z3ResultDto
+    public class Z3FullResultDto : Z3ResultDto
     {
         public Dictionary<string, object> ResultProperties { get; set; }
 

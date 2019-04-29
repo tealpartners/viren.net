@@ -11,7 +11,7 @@ namespace Viren.Core.Authentication
     {
         private readonly AccessTokenCache _accessTokenCache;
 
-        public RefreshTokenHandler(AccessTokenCache accessTokenCache): base(new HttpClientHandler())
+        public RefreshTokenHandler(AccessTokenCache accessTokenCache) : base(new HttpClientHandler())
         {
             _accessTokenCache = accessTokenCache;
         }

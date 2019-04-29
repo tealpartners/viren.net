@@ -21,11 +21,11 @@ namespace Viren.Execution.Requests.Models
     {
         public GetLookupTableResponse()
         {
-            ValidationMessages = new List<ValidationMessage>();    
+            ValidationMessages = new List<ValidationMessage>();
         }
-        
+
         public JArray Result { get; set; }
-        
+
         public List<ValidationMessage> ValidationMessages { get; set; }
     }
 }

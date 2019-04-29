@@ -83,7 +83,8 @@ namespace Viren.Execution.Clients
         public Task<OptimizeCalculationResponse> Optimize(OptimizeCalculationRequest request)
         {
             return _client.Post<OptimizeCalculationRequest, OptimizeCalculationResponse>($"{RoutePrefix.Calculation}/optimize", request);
-        }  
+        }
+
         public Task<Z3CalculationResponse> Optimize(Z3CalculationRequest request)
         {
             return _client.Post<Z3CalculationRequest, Z3CalculationResponse>($"{RoutePrefix.Calculation}/optimize/z3", request);

@@ -42,7 +42,7 @@ namespace Viren.Execution.Requests.Calculations
         {
             ValidationMessages = new List<ValidationMessage>();
         }
-        
+
         public string Id { get; set; }
         public Guid? ConversationId { get; set; }
         public Guid? ImportId { get; set; }
