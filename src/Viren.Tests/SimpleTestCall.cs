@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using Microsoft.Extensions.Configuration;
 using Viren.Execution;
 using Xunit;
@@ -41,16 +42,7 @@ namespace Viren.Tests
         [Fact]
         public async void ModelGetVersion()
         {
-            Console.WriteLine(_testSettings);
-            var apiHostName = _testSettings.apiHostName; // "http://dev.calc-exec.be/" ;
-
-            var auth0Domain = _testSettings.auth0Domain; // "https://teal-calculation-dev.eu.auth0.com";
-            var auth0TestsClientId = _testSettings.auth0TestsClientId; // "Hekmz983EKNcZTh5kETQqChZtUnuDXwe";
-            var auth0TestsClientSecret = _testSettings.auth0TestsClientSecret; // "9TPXNqylBXydE2H20QFxQc6lGy6MShk9nAxsr8LwH6E-klpLyNzPgoRcrPGSRGm5";
-
-
-            var httpClient = VirenHttpClientFactory.Create(auth0TestsClientId, auth0TestsClientSecret, apiHostName, auth0Domain);
-            var client = new ExecutionClient(httpClient);
+            var client = CreateClient();
 
             try
             {
@@ -61,6 +53,40 @@ namespace Viren.Tests
             {
                 Assert.True(true); //rechten issue, maar API call is gelukt
             }
+        }
+
+
+        [Fact]
+        public async void Calculate()
+        {
+            try
+            {
+                var client = CreateClient();
+
+                var globals = new Dictionary<string, object>();
+                var root = new Dictionary<string, object>();
+                var requestId = Guid.NewGuid().ToString();
+                var calcRes = await client.Calculation.Execute("TestProject", "TestModel", 0, "NettoBerekening", globals, root, null, null, null, requestId);
+                Assert.NotNull(calcRes.ValidationMessages[0].Code);
+                Assert.NotNull(calcRes);
+            }
+            catch (Exception e) when (e.Message.Contains("you don't have enough rights you need to have"))
+            {
+                Assert.True(true); //rechten issue, maar API call is gelukt
+            }
+        }
+
+        private ExecutionClient CreateClient()
+        {
+            Console.WriteLine(_testSettings);
+            var apiHostName = _testSettings.apiHostName; // "http://dev.calc-exec.be/" ;
+
+            var auth0Domain = _testSettings.auth0Domain; // "https://teal-calculation-dev.eu.auth0.com";
+            var auth0TestsClientId = _testSettings.auth0TestsClientId; // "Hekmz983EKNcZTh5kETQqChZtUnuDXwe";
+            var auth0TestsClientSecret = _testSettings.auth0TestsClientSecret; // "9TPXNqylBXydE2H20QFxQc6lGy6MShk9nAxsr8LwH6E-klpLyNzPgoRcrPGSRGm5";
+            var httpClient = VirenHttpClientFactory.Create(auth0TestsClientId, auth0TestsClientSecret, apiHostName, auth0Domain);
+            var client = new ExecutionClient(httpClient);
+            return client;
         }
     }
 }
