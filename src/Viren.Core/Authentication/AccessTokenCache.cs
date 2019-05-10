@@ -6,7 +6,7 @@ namespace Viren.Core.Authentication
 {
     public class AccessTokenCache
     {
-        private static readonly TimeSpan LockTimeout = TimeSpan.FromSeconds(2);
+        private static readonly TimeSpan LockTimeout = TimeSpan.FromSeconds(60);    //not to low for debugging...
         private readonly Auth0TokenClient _auth0TokenClient;
         private readonly SemaphoreSlim _lock = new SemaphoreSlim(1, 1);
         private readonly VirenExecutionOptions _virenConfig;
