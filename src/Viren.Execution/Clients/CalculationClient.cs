@@ -77,7 +77,7 @@ namespace Viren.Execution.Clients
 
         public Task<ExecuteCalculationsResponse> Execute(ExecuteCalculationsRequest request)
         {
-            return _client.Post<ExecuteCalculationsRequest, ExecuteCalculationsResponse>($"{RoutePrefix.Calculations}?debug={request.Debug}&full={request.Full}", request);
+            return _client.Post<ExecuteCalculationsRequest, ExecuteCalculationsResponse>($"{RoutePrefix.CalculationsV2}", request);
         }
 
         public Task<OptimizeCalculationResponse> Optimize(OptimizeCalculationRequest request)
