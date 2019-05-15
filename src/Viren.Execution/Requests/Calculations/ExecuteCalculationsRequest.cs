@@ -8,10 +8,10 @@ namespace Viren.Execution.Requests.Calculations
     {
         public ExecuteCalculationsRequest()
         {
-            BatchCalculationInputItemDto = new List<BatchCalculationInputItemDto>();
+            BatchCalculationInputItems = new List<BatchCalculationInputItemDto>();
         }
 
-        public IList<BatchCalculationInputItemDto> BatchCalculationInputItemDto { get; set; }
+        public IList<BatchCalculationInputItemDto> BatchCalculationInputItems { get; set; }
 
         public string ClientSessionId { get; set; }
     }
@@ -21,13 +21,13 @@ namespace Viren.Execution.Requests.Calculations
         public ExecuteCalculationsResponse()
         {
             ValidationMessages = new List<ValidationMessage>();
-            BatchCalculationOutputItemDtos = new List<BatchCalculationOutputItemDto>();
+            BatchCalculationOutputItems = new List<BatchCalculationOutputItemDto>();
         }
 
         public List<ValidationMessage> ValidationMessages { get; set; }
 
         public long ElapsedMilliseconds { get; set; }
 
-        public List<BatchCalculationOutputItemDto> BatchCalculationOutputItemDtos { get; set; }
+        public List<BatchCalculationOutputItemDto> BatchCalculationOutputItems { get; set; }
     }
 }
