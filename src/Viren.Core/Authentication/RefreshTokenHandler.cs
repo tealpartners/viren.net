@@ -11,14 +11,21 @@ namespace Viren.Core.Authentication
     {
         private readonly AccessTokenCache _accessTokenCache;
 
-        public RefreshTokenHandler(AccessTokenCache accessTokenCache) : base(new HttpClientHandler())
+        public RefreshTokenHandler(AccessTokenCache accessTokenCache)
+        {
+            _accessTokenCache = accessTokenCache;
+        }
+
+        public RefreshTokenHandler(AccessTokenCache accessTokenCache, bool withInnerClientHandler): base(new HttpClientHandler())
         {
             _accessTokenCache = accessTokenCache;
         }
 
         public static RefreshTokenHandler CreateFallback(AccessTokenCache accessTokenCache)
         {
-            return new RefreshTokenHandler(accessTokenCache);
+            //the non DI version needs innerhandler: System.InvalidOperationException : The inner handler has not been assigned.
+            //the DI version crashes : System.InvalidOperationException: The 'InnerHandler' property must be null. 'DelegatingHandler' instances provided to 'HttpMessageHandlerBuilder' must not be reused or cached.
+            return new RefreshTokenHandler(accessTokenCache, true);
         }
 
         protected override async Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)

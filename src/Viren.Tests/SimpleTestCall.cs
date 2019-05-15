@@ -1,23 +1,12 @@
 using System;
 using System.Collections.Generic;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Viren.Execution;
 using Xunit;
 
 namespace Viren.Tests
 {
-    public class TestSettings
-    {
-        public string apiHostName { get; set; }
-        public string auth0Domain { get; set; }
-        public string auth0TestsClientId { get; set; }
-        public string auth0TestsClientSecret { get; set; }
-
-        public override string ToString()
-        {
-            return $"{apiHostName} {auth0Domain} {auth0TestsClientId} {auth0TestsClientSecret}";
-        }
-    }
 
     public class SimpleTestCall
     {
@@ -39,6 +28,7 @@ namespace Viren.Tests
                 .Bind(_testSettings);
         }
 
+
         [Fact]
         public async void ModelGetVersion()
         {
@@ -51,7 +41,7 @@ namespace Viren.Tests
             }
             catch (Exception e) when (e.Message.Contains("you don't have enough rights you need to have"))
             {
-                Assert.True(true); //rechten issue, maar API call is gelukt
+                Assert.True(true, e.ToString()); //rechten issue, maar API call is gelukt
             }
         }
 
@@ -72,7 +62,7 @@ namespace Viren.Tests
             }
             catch (Exception e) when (e.Message.Contains("you don't have enough rights you need to have"))
             {
-                Assert.True(true); //rechten issue, maar API call is gelukt
+                Assert.True(true, e.ToString()); //rechten issue, maar API call is gelukt
             }
         }
 
