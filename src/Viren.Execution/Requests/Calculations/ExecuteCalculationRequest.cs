@@ -6,7 +6,12 @@ namespace Viren.Execution.Requests.Calculations
 {
     public class ExecuteCalculationRequest
     {
-        public string RequestId = Guid.NewGuid().ToString();
+        public ExecuteCalculationRequest()
+        {
+            RequestId = Guid.NewGuid().ToString();
+        }
+
+        public string RequestId { get; set; }
 
         public IDictionary<string, object> Globals = new Dictionary<string, object>();
 

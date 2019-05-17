@@ -7,15 +7,15 @@ namespace Viren.Execution.Requests.Calculations.Optimize
 {
     public class OptimizeCalculationRequest
     {
-        public string RequestId = Guid.NewGuid().ToString();
-
         public OptimizeCalculationRequest()
         {
             OptimizeInputs = new List<OptimizeInputInfoDto>();
             Root = new Dictionary<string, object>();
             Globals = new Dictionary<string, object>();
+            RequestId = Guid.NewGuid().ToString();
         }
 
+        public string RequestId { get; set; }
         public string Project { get; set; }
         public string Model { get; set; }
         public int Version { get; set; }

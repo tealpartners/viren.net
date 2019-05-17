@@ -7,7 +7,12 @@ namespace Viren.Execution.Requests.Calculations
 {
     public class ExecuteTestCalculationRequest
     {
-        public string RequestId = Guid.NewGuid().ToString();
+        public ExecuteTestCalculationRequest()
+        {
+            RequestId = Guid.NewGuid().ToString();
+        }
+
+        public string RequestId { get; set; }
         public string Project { get; set; }
         public string Model { get; set; }
         public int Version { get; set; }

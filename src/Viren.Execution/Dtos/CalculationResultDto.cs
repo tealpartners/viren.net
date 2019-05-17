@@ -5,7 +5,12 @@ namespace Viren.Execution.Dtos
 {
     public class CalculationResultDto
     {
-        public string RequestId = Guid.NewGuid().ToString();
+        public CalculationResultDto()
+        {
+            RequestId = Guid.NewGuid().ToString();
+        }
+
+        public string RequestId { get; set; }
         public Guid? ConversationId { get; set; }
         public Guid? ImportId { get; set; }
 
