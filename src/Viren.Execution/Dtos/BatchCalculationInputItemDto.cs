@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Viren.Core.Enums;
 
 namespace Viren.Execution.Dtos
 {
@@ -24,7 +25,7 @@ namespace Viren.Execution.Dtos
 
         public bool? Debug { get; set; }
 
-        public bool? Full { get; set; }
+        public ResultType? ResultType { get; set; }
 
         public IList<CalculationInputDto> CalculationInputs { get; set; }
     }

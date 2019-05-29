@@ -9,10 +9,11 @@ namespace Viren.Execution.Dtos
         public BatchCalculationOutputItemDto()
         {
             ValidationMessages = new List<ValidationMessage>();
+            Result = new Dictionary<string, object>();
         }
 
         public string RequestId { get; set; }
-        public JObject Result { get; set; }
+        public Dictionary<string, object> Result { get; set; }
         public IList<ValidationMessage> ValidationMessages { get; set; }
         public bool IsValid { get; set; }
     }

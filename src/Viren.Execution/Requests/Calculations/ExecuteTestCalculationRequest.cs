@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Viren.Core.Dtos;
+using Viren.Core.Enums;
 using Viren.Execution.Dtos;
 
 namespace Viren.Execution.Requests.Calculations
@@ -23,7 +24,7 @@ namespace Viren.Execution.Requests.Calculations
         public IDictionary<string, object> Root { get; set; }
         public IDictionary<string, object> Globals { get; set; }
         public bool? Debug { get; set; }
-        public bool? Full { get; set; }
+        public ResultType? ResultType { get; set; }
 
         public string ClientSessionId { get; set; }
     }

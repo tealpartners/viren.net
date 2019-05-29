@@ -1,13 +1,13 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-    <Version>0.8.2</Version>
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    <Version>0.9.0-alpha.1</Version>
     <Authors>Teal Partners</Authors>
     <Product>Viren execution .NET client</Product>
     <RepositoryUrl>https://github.com/tealpartners/viren.net</RepositoryUrl>
     <PackageProjectUrl>https://www.viren.be/</PackageProjectUrl>
-    <PackageLicenseUrl>https://github.com/tealpartners/viren.net/blob/master/LICENSE</PackageLicenseUrl>
+    <PackageLicenseUrl></PackageLicenseUrl>
     <ApplicationIcon>icon.ico</ApplicationIcon>
     <Description>.NET dependency injection extensions for the Viren Execution API</Description>
     <Copyright>© 2018-2019 Teal Partners</Copyright>
@@ -19,11 +19,19 @@
     <AssemblyName>Viren.Execution.Extensions.DependencyInjection</AssemblyName>
     <RootNamespace>Viren.Execution.Extensions.DependencyInjection</RootNamespace>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
+    <RepositoryType>git</RepositoryType>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.Extensions.Http" Version="2.2.0" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Viren.Execution\Viren.Execution.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\LICENSE.md">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
   </ItemGroup>
 </Project>

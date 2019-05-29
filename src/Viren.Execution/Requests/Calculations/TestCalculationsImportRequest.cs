@@ -1,4 +1,5 @@
 using System;
+using Viren.Core.Enums;
 
 namespace Viren.Execution.Requests.Calculations
 {
@@ -14,7 +15,7 @@ namespace Viren.Execution.Requests.Calculations
 
         public int TotalCalculations { get; set; }
 
-        public bool? Full { get; set; }
+        public ResultType? ResultType { get; set; }
 
         public string ClientSessionId { get; set; }
     }

@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
+using Viren.Core.Enums;
 using Viren.Core.Helpers;
 using Viren.Execution.Requests;
 using Viren.Execution.Requests.Calculations;
@@ -12,11 +13,11 @@ namespace Viren.Execution.Clients
     public interface ICalculationClient
     {
         Task<ExecuteCalculationResponse> ExecuteWithLatestVersion(string project, string model, bool draft, string entryPoint,
-            IDictionary<string, object> globals = null, IDictionary<string, object> root = null, bool? debug = null, bool? full = null, string requestId = null);
+            IDictionary<string, object> globals = null, IDictionary<string, object> root = null, bool? debug = null, ResultType? resultType = ResultType.ResultProperties, string requestId = null);
 
         Task<ExecuteCalculationResponse> Execute(string project, string model, int version, string entryPoint,
             IDictionary<string, object> globals = null, IDictionary<string, object> root = null,
-            int? revision = null, bool? debug = null, bool? full = null, string requestId = null);
+            int? revision = null, bool? debug = null, ResultType? resultType = ResultType.ResultProperties, string requestId = null);
 
         Task<ExecuteCalculationResponse> Execute(ExecuteCalculationRequest request);
         Task<ExecuteCalculationsResponse> Execute(ExecuteCalculationsRequest request);
@@ -36,17 +37,17 @@ namespace Viren.Execution.Clients
         }
 
         public async Task<ExecuteCalculationResponse> ExecuteWithLatestVersion(string project, string model, bool draft, string entryPoint,
-            IDictionary<string, object> globals = null, IDictionary<string, object> root = null, bool? debug = null, bool? full = null, string requestId = null)
+            IDictionary<string, object> globals = null, IDictionary<string, object> root = null, bool? debug = null, ResultType? resultType  = ResultType.ResultProperties, string requestId = null)
         {
             var versionTask = await _modelClient.GetVersion(project, model, draft).ConfigureAwait(false);
             var version = versionTask.Version;
             var revision = versionTask.Revision;
-            return await Execute(project, model, version, entryPoint, globals, root, revision, debug, full, requestId).ConfigureAwait(false);
+            return await Execute(project, model, version, entryPoint, globals, root, revision, debug, resultType, requestId).ConfigureAwait(false);
         }
 
         public Task<ExecuteCalculationResponse> Execute(string project, string model, int version, string entryPoint,
             IDictionary<string, object> globals = null, IDictionary<string, object> root = null,
-            int? revision = null, bool? debug = null, bool? full = null, string requestId = null)
+            int? revision = null, bool? debug = null, ResultType? resultType = ResultType.ResultProperties, string requestId = null)
         {
             if (globals == null) globals = new Dictionary<string, object>();
 
@@ -65,14 +66,14 @@ namespace Viren.Execution.Clients
                 Root = root,
                 Revision = revision,
                 Debug = debug,
-                Full = full
+                ResultType = resultType
             };
             return Execute(request);
         }
 
         public Task<ExecuteCalculationResponse> Execute(ExecuteCalculationRequest request)
         {
-            return _client.Post<ExecuteCalculationRequest, ExecuteCalculationResponse>($"{RoutePrefix.Calculation}?debug={request.Debug}&full={request.Full}", request);
+            return _client.Post<ExecuteCalculationRequest, ExecuteCalculationResponse>($"{RoutePrefix.Calculation}?debug={request.Debug}", request);
         }
 
         public Task<ExecuteCalculationsResponse> Execute(ExecuteCalculationsRequest request)

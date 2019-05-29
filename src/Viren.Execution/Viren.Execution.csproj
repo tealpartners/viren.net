@@ -3,13 +3,13 @@
     <TargetFrameworks Condition="'$(LibraryFrameworks)'==''">net46;netstandard1.3;netstandard2.0;</TargetFrameworks>
     <TargetFrameworks Condition="'$(LibraryFrameworks)'!=''">$(LibraryFrameworks)</TargetFrameworks>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-    <Version>0.8.2</Version>
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    <Version>0.9.0-alpha.1</Version>
     <Authors>Teal Partners</Authors>
     <Product>Viren execution .NET client</Product>
     <RepositoryUrl>https://github.com/tealpartners/viren.net</RepositoryUrl>
     <PackageProjectUrl>https://www.viren.be/</PackageProjectUrl>
-    <PackageLicenseUrl>https://github.com/tealpartners/viren.net/blob/master/LICENSE</PackageLicenseUrl>
+    <PackageLicenseUrl></PackageLicenseUrl>
     <ApplicationIcon>icon.ico</ApplicationIcon>
     <Description>.NET client for the Viren Execution API</Description>
     <Copyright>© 2018-2019 Teal Partners</Copyright>
@@ -20,6 +20,8 @@
     <AssemblyOriginatorKeyFile>VirenExecutionKey.pfx</AssemblyOriginatorKeyFile>
     <AssemblyName>Viren.Execution</AssemblyName>
     <RootNamespace>Viren.Execution</RootNamespace>
+    <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
+    <RepositoryType>git</RepositoryType>
   </PropertyGroup>
   <PropertyGroup Condition="'$(TargetFramework)'=='net46'">
     <AssemblyTitle>Viren.Core .NET 4.6</AssemblyTitle>
@@ -38,5 +40,11 @@
   </ItemGroup>
   <ItemGroup Condition="'$(TargetFramework)' == 'net46'">
       <Reference Include="System.Net.Http" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\LICENSE.md">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
   </ItemGroup>
 </Project>
