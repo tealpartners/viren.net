@@ -1,4 +1,4 @@
-﻿namespace Viren.Execution.Dtos.Calculation
+﻿namespace Viren.Execution.Dtos.CalculationDtos
 {
     public class CalculationsStatisticsDto
     {

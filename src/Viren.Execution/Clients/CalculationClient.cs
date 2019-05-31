@@ -6,7 +6,6 @@ using Viren.Core.Enums;
 using Viren.Core.Helpers;
 using Viren.Execution.Requests;
 using Viren.Execution.Requests.Calculations;
-using Viren.Execution.Requests.Calculations.Optimize;
 
 namespace Viren.Execution.Clients
 {

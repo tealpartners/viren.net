@@ -1,6 +1,6 @@
 using Viren.Core.Dtos;
 
-namespace Calculation.Execution.Contracts.RequestResponses
+namespace Viren.Execution.Requests
 {
     public abstract class BaseResponse
     {

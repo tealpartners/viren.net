@@ -1,9 +1,8 @@
 using System;
 using System.Collections.Generic;
-using Newtonsoft.Json.Linq;
 using Viren.Core.Dtos;
 
-namespace Viren.Execution.Dtos.Calculation
+namespace Viren.Execution.Dtos.CalculationDtos
 {
     public class ExecutedCalculationDto
     {

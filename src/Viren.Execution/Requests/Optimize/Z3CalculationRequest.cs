@@ -1,9 +1,7 @@
 using System.Collections.Generic;
-using Calculation.Execution.Contracts.RequestResponses;
-using Newtonsoft.Json.Linq;
-using Viren.Execution.Dtos.Calculation.Optimize.Z3;
+using Viren.Execution.Dtos.CalculationDtos.OptimizeDtos.Z3;
 
-namespace Viren.Execution.Requests.Calculations.Optimize
+namespace Viren.Execution.Requests.Optimize
 {
     public class Z3CalculationRequest
     {

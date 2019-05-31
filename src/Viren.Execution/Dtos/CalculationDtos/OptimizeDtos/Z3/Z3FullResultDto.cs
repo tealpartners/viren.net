@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Viren.Execution.Dtos.Calculation.Optimize.Z3
+namespace Viren.Execution.Dtos.CalculationDtos.OptimizeDtos.Z3
 {
     public class Z3FullResultDto : Z3ResultDto
     {

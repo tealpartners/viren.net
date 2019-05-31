@@ -1,9 +1,9 @@
 using System;
 using System.Collections.Generic;
 using Viren.Core.Dtos;
-using Viren.Execution.Dtos.Calculation.Optimize;
+using Viren.Execution.Dtos.CalculationDtos.OptimizeDtos;
 
-namespace Viren.Execution.Requests.Calculations.Optimize
+namespace Viren.Execution.Requests.Optimize
 {
     public class OptimizeCalculationRequest
     {

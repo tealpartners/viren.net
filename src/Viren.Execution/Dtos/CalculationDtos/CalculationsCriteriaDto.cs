@@ -1,6 +1,6 @@
 using System;
 
-namespace Viren.Execution.Dtos.Calculation
+namespace Viren.Execution.Dtos.CalculationDtos
 {
     public class CalculationsCriteriaDto
     {
