@@ -29,16 +29,16 @@ namespace Viren.Execution.Requests.Calculations
 
     public class GetCalculationsResponse
     {
-        public Calculation[] Calculations { get; set; }
+        public CalculationDto[] Calculations { get; set; }
 
         public int Page { get; set; }
         public int LastPage { get; set; }
         public long Total { get; set; }
     }
 
-    public class Calculation
+    public class CalculationDto
     {
-        public Calculation()
+        public CalculationDto()
         {
             ValidationMessages = new List<ValidationMessage>();
         }
