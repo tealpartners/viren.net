@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
@@ -33,11 +34,18 @@ namespace Viren.Core.Helpers
             if (httpMethod != HttpMethod.Get) requestMessage.Content = request.ToStringContent(JsonSerializerSettings);
 
             var response = await client.SendAsync(requestMessage).ConfigureAwait(false);
-            ;
 
             var responseString = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
-            if (response.IsSuccessStatusCode) return JsonConvert.DeserializeObject<TResponse>(responseString, JsonSerializerSettings);
-
+            if (response.IsSuccessStatusCode)
+            {
+                return JsonConvert.DeserializeObject<TResponse>(responseString, JsonSerializerSettings);
+            }
+            
+            if (string.IsNullOrEmpty(responseString))
+            {
+                throw new Exception(response.ToString());
+            }
+            
             throw new Exception(responseString);
         }
     }
