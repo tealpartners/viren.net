@@ -1,4 +1,4 @@
-namespace Viren.Core.Enums
+﻿namespace Viren.Core.Enums
 {
     public enum ResultType
     {

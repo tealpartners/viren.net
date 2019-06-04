@@ -5,14 +5,10 @@ namespace Viren.Execution.Dtos
 {
     public class CalculationResultDto
     {
-        public CalculationResultDto()
-        {
-            RequestId = Guid.NewGuid().ToString();
-        }
-
-        public string RequestId { get; set; }
         public Guid? ConversationId { get; set; }
-        public Guid? ImportId { get; set; }
+        public int? BatchId { get; set; }
+        public string RequestId { get; set; }
+        public string ClientSessionId { get; set; }
 
         public string Project { get; set; }
         public string Model { get; set; }
