@@ -17,8 +17,10 @@
 
 ## Examples
 ### Viren namespaces and alias
+```
 using Viren.Execution;
 using Environment = Viren.Core.Enums.Environment;
+```
 
 ### Creating a client
 ```
