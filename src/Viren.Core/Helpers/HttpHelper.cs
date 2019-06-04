@@ -26,6 +26,10 @@ namespace Viren.Core.Helpers
             return client.Send<object, TResponse>(HttpMethod.Get, url);
         }
 
+        public static Task<TResponse> Put<TRequest, TResponse>(this HttpClient client, string url, TRequest request) where TRequest : class
+        {
+            return client.Send<TRequest, TResponse>(HttpMethod.Put, url, request);
+        }
 
         private static async Task<TResponse> Send<TRequest, TResponse>(this HttpClient client, HttpMethod httpMethod, string url, TRequest request = null) where TRequest : class
         {

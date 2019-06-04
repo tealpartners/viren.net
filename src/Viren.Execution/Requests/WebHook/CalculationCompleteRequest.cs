@@ -4,6 +4,7 @@ namespace Viren.Execution.Requests.WebHook
 {
     public class CalculationCompleteRequest
     {
+        public int BatchId { get; set; }
         public CalculationResultDto[] Results { get; set; }
     }
 
