@@ -1,5 +1,5 @@
-using Newtonsoft.Json.Linq;
 using System;
+using System.Collections.Generic;
 
 namespace Viren.Execution.Dtos
 {
@@ -18,6 +18,6 @@ namespace Viren.Execution.Dtos
         public DateTime TimeStamp { get; set; }
         public int ElapsedMilliseconds { get; set; }
 
-        public JObject Result { get; set; }
+        public IDictionary<string, object> Result { get; set; }
     }
 }

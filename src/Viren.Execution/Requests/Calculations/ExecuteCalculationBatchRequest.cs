@@ -1,5 +1,4 @@
-﻿using Newtonsoft.Json.Linq;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Viren.Core.Dtos;
 using Viren.Core.Enums;
 
@@ -46,7 +45,7 @@ namespace Viren.Execution.Requests.Calculations
     public class ExecuteCalculationBatchInputItem
     {
         public string RequestId { get; set; }
-        public List<JValue> Root { get; set; }
-        public List<JValue> Globals { get; set; }
+        public List<object> Root { get; set; }
+        public List<object> Globals { get; set; }
     }
 }

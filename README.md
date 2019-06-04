@@ -17,11 +17,13 @@
 
 ## Examples
 ### Viren namespaces and alias
+```csharp
 using Viren.Execution;
 using Environment = Viren.Core.Enums.Environment;
+```
 
 ### Creating a client
-```
+```csharp
 var auth0ClientId = "";
 var auth0ClientSecret = "";
 var environment = Environment.Production;
