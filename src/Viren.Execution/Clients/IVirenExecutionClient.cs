@@ -5,5 +5,6 @@ namespace Viren.Execution.Clients
         ICalculationClient Calculation { get; }
         IModelClient Model { get; }
         IInteractiveRunClient InteractiveRun { get; }
+        IDocumentationClient Documentation { get; }
     }
 }

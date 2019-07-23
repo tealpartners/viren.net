@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Viren.Execution;
@@ -44,6 +45,43 @@ namespace Viren.Tests
                 Assert.True(true, e.ToString()); //rechten issue, maar API call is gelukt
             }
         }
+        
+        
+        [Fact]
+        public async void DocumentationBlocks()
+        {
+            var client = CreateClient();
+
+            try
+            {
+                var blocksResponse = await client.Documentation
+                    .GetBlocksDocumentation("TestProject", "TestModel", 1,true);
+                Assert.NotNull(blocksResponse);
+                
+                var firstBlock = blocksResponse.Blocks.FirstOrDefault();
+
+                Assert.NotNull(firstBlock);
+                var blockDetailResponse = await client.Documentation
+                    .GetBlocksDetailDocumentation("TestProject", "TestModel", 1, new List<string> {firstBlock.Id}, true);
+                Assert.NotNull(blockDetailResponse);
+                Assert.Empty(blockDetailResponse.ValidationBag.Messages);
+                Assert.NotNull(blockDetailResponse.Blocks);
+                Assert.NotEmpty(blockDetailResponse.Blocks);
+                
+                
+                
+                var typesResponse = await client.Documentation
+                    .GetTypesDocumentation("TestProject", "TestModel", 1, "nl", true);
+                Assert.NotNull(typesResponse);
+                Assert.Empty(typesResponse.ValidationBag.Messages);
+                Assert.NotNull(typesResponse.Types);
+                Assert.NotEmpty(typesResponse.Types);
+            }
+            catch (Exception e) when (e.Message.Contains("you don't have enough rights you need to have"))
+            {
+                Assert.True(true, e.ToString()); //rechten issue, maar API call is gelukt
+            }
+        }
 
 
         [Fact]
@@ -69,6 +107,7 @@ namespace Viren.Tests
         private ExecutionClient CreateClient()
         {
             Console.WriteLine(_testSettings);
+            
             var apiHostName = _testSettings.apiHostName; // "http://dev.calc-exec.be/" ;
 
             var auth0Domain = _testSettings.auth0Domain; // "https://teal-calculation-dev.eu.auth0.com";
