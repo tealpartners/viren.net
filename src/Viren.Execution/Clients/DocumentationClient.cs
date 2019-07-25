@@ -41,7 +41,7 @@ namespace Viren.Execution.Clients
             var getPars = string.IsNullOrEmpty(blockIds)
                 ? draftParam
                 : $"{blockIds}&{draftParam}";
-            return  _client.Get<GetBlocksDetailDocumentationResponse>($"{RoutePrefix.Api}/{UrlBuilder.BuildUrl(request)}/documentation/blocks/detail?{getPars}");
+            return  _client.Get<GetBlocksDetailDocumentationResponse>($"{RoutePrefix.Api}/documentation/blocks/detail/{UrlBuilder.BuildUrl(request)}?{getPars}");
         }
 
         
@@ -56,7 +56,7 @@ namespace Viren.Execution.Clients
                 
             };
             var draftParam = draft.HasValue ? $"Draft={request.Draft}" : "";
-            return  _client.Get<GetBlocksDocumentationResponse>($"{RoutePrefix.Api}/{UrlBuilder.BuildUrl(request)}/documentation/blocks?{draftParam}");
+            return  _client.Get<GetBlocksDocumentationResponse>($"{RoutePrefix.Api}/documentation/blocks/{UrlBuilder.BuildUrl(request)}?{draftParam}");
         }
         
         public Task<GetTypesDocumentationResponse> GetTypesDocumentation(string project, string model, int version, string language,  bool? draft = null)
@@ -75,7 +75,7 @@ namespace Viren.Execution.Clients
             var getPars = string.IsNullOrEmpty(languageParam)
                 ? draftParam
                 : $"{languageParam}&{draftParam}";
-            return  _client.Get<GetTypesDocumentationResponse>($"{RoutePrefix.Api}/{UrlBuilder.BuildUrl(request)}/documentation/types?{getPars}");
+            return  _client.Get<GetTypesDocumentationResponse>($"{RoutePrefix.Api}/documentation/types/{UrlBuilder.BuildUrl(request)}?{getPars}");
         }
     }
 }
