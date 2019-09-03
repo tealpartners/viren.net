@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Viren.Core.Enums;
 
-namespace Viren.Execution.Dtos
+namespace Viren.Execution.Dtos.CalculationDtos.Batch
 {
     public class BatchCalculationInputItemDto 
     {

@@ -4,6 +4,8 @@ namespace Viren.Execution.Dtos.Documentation
     {
         public string Id { get; set; }
 
+        public string Label { get; set; }
+
         public string UsageType { get; set; }
     }
 }

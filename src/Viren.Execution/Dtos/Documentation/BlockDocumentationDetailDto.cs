@@ -6,8 +6,10 @@ namespace Viren.Execution.Dtos.Documentation
     {
         public string BlockId { get; set; }
 
+        public string Label { get; set; }
+
         public string UsageType { get; set; }
-        
+
         public string BlockType { get; set; }
 
         public BlockDocumentationOptionalInfoDto OptionalInfo { get; set; }

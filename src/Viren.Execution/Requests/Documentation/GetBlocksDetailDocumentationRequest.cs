@@ -12,6 +12,8 @@ namespace Viren.Execution.Requests.Documentation
         public bool? Draft { get; set; }
 
         public List<string> BlockIds { get; set; }
+
+        public string Language { get; set; }
     }
 
     public class GetBlocksDetailDocumentationResponse : BaseResponse

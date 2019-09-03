@@ -1,8 +1,7 @@
-﻿using Newtonsoft.Json.Linq;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Viren.Core.Dtos;
 
-namespace Viren.Execution.Dtos
+namespace Viren.Execution.Dtos.CalculationDtos.Batch
 {
     public class BatchCalculationOutputItemDto
     {

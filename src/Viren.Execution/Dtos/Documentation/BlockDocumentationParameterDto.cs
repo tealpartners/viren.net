@@ -15,15 +15,15 @@ namespace Viren.Execution.Dtos.Documentation
 
         public string TagName { get; set; }
     }
-    
-    
+
+
     public class BlockDocumentationOutputParameterDto : BlockDocumentationParameterDto
     {
         public BlockDocumentationOutputParameterDto()
         {
             Tags=new List<string>();
         }
-        
+
         public List<string> Tags { get; set; }
     }
 }
