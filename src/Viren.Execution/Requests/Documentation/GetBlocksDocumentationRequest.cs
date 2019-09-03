@@ -10,6 +10,8 @@ namespace Viren.Execution.Requests.Documentation
         public string Model { get; set; }
         public int Version { get; set; }
         public bool? Draft { get; set; }
+        
+        public string Language { get; set; }
     }
 
     public class GetBlocksDocumentationResponse: BaseResponse

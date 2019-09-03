@@ -10,8 +10,8 @@ namespace Viren.Execution.Clients
 {
     public interface IDocumentationClient
     {
-        Task<GetBlocksDetailDocumentationResponse> GetBlocksDetailDocumentation(string project, string model, int version, List<string> blocks, bool? draft = null);
-        Task<GetBlocksDocumentationResponse> GetBlocksDocumentation(string project, string model, int version, bool? draft = null);
+        Task<GetBlocksDetailDocumentationResponse> GetBlocksDetailDocumentation(string project, string model, int version, List<string> blocks, string language, bool? draft = null);
+        Task<GetBlocksDocumentationResponse> GetBlocksDocumentation(string project, string model, int version, string language, bool? draft = null);
 
         Task<GetTypesDocumentationResponse> GetTypesDocumentation(string project, string model, int version, string language, bool? draft = null);
     }
@@ -25,7 +25,7 @@ namespace Viren.Execution.Clients
             _client = client;
         }
 
-        public Task<GetBlocksDetailDocumentationResponse> GetBlocksDetailDocumentation(string project, string model, int version, List<string> blocks, bool? draft = null)
+        public Task<GetBlocksDetailDocumentationResponse> GetBlocksDetailDocumentation(string project, string model, int version, List<string> blocks, string language, bool? draft = null)
         {
             var request = new GetBlocksDetailDocumentationRequest
             {
@@ -33,19 +33,20 @@ namespace Viren.Execution.Clients
                 Model = model,
                 Version = version,
                 Draft = draft,
-                BlockIds = blocks
+                BlockIds = blocks,
+                Language = language
                 
             };
+            
+            var languageParam = string.IsNullOrEmpty(language) ? "" : $"Language={language}";
             var blockIds = string.Join("&", blocks.Select((b, i) => $"BlockIds[{i}]={b}"));
             var draftParam = draft.HasValue ? $"Draft={request.Draft}" : "";
-            var getPars = string.IsNullOrEmpty(blockIds)
-                ? draftParam
-                : $"{blockIds}&{draftParam}";
+            var getPars = $"{blockIds}&{draftParam}&{languageParam}";
             return  _client.Get<GetBlocksDetailDocumentationResponse>($"{RoutePrefix.Api}/documentation/blocks/detail/{UrlBuilder.BuildUrl(request)}?{getPars}");
         }
 
         
-        public Task<GetBlocksDocumentationResponse> GetBlocksDocumentation(string project, string model, int version, bool? draft = null)
+        public Task<GetBlocksDocumentationResponse> GetBlocksDocumentation(string project, string model, int version, string language, bool? draft = null)
         {
             var request = new GetBlocksDocumentationRequest
             {
@@ -55,8 +56,11 @@ namespace Viren.Execution.Clients
                 Draft = draft,
                 
             };
+            
+            var languageParam = string.IsNullOrEmpty(language) ? "" : $"Language={language}";
             var draftParam = draft.HasValue ? $"Draft={request.Draft}" : "";
-            return  _client.Get<GetBlocksDocumentationResponse>($"{RoutePrefix.Api}/documentation/blocks/{UrlBuilder.BuildUrl(request)}?{draftParam}");
+            var getPars = $"{draftParam}&{languageParam}";
+            return  _client.Get<GetBlocksDocumentationResponse>($"{RoutePrefix.Api}/documentation/blocks/{UrlBuilder.BuildUrl(request)}?{getPars}");
         }
         
         public Task<GetTypesDocumentationResponse> GetTypesDocumentation(string project, string model, int version, string language,  bool? draft = null)
@@ -72,9 +76,7 @@ namespace Viren.Execution.Clients
 
             var languageParam = string.IsNullOrEmpty(language) ? "" : $"Language={language}";
             var draftParam = draft.HasValue ? $"Draft={request.Draft}" : "";
-            var getPars = string.IsNullOrEmpty(languageParam)
-                ? draftParam
-                : $"{languageParam}&{draftParam}";
+            var getPars = $"{languageParam}&{draftParam}";
             return  _client.Get<GetTypesDocumentationResponse>($"{RoutePrefix.Api}/documentation/types/{UrlBuilder.BuildUrl(request)}?{getPars}");
         }
     }

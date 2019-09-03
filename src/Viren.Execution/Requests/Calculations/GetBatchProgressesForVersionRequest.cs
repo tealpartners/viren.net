@@ -1,4 +1,4 @@
-﻿using Viren.Execution.Dtos;
+﻿using Viren.Execution.Dtos.CalculationDtos.Batch;
 
 namespace Viren.Execution.Requests.Calculations
 {

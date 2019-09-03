@@ -55,14 +55,14 @@ namespace Viren.Tests
             try
             {
                 var blocksResponse = await client.Documentation
-                    .GetBlocksDocumentation("TestProject", "TestModel", 1,true);
+                    .GetBlocksDocumentation("TestProject", "TestModel", 1, "En", true);
                 Assert.NotNull(blocksResponse);
                 
                 var firstBlock = blocksResponse.Blocks.FirstOrDefault();
 
                 Assert.NotNull(firstBlock);
                 var blockDetailResponse = await client.Documentation
-                    .GetBlocksDetailDocumentation("TestProject", "TestModel", 1, new List<string> {firstBlock.Id}, true);
+                    .GetBlocksDetailDocumentation("TestProject", "TestModel", 1, new List<string> {firstBlock.Id}, "En", true);
                 Assert.NotNull(blockDetailResponse);
                 Assert.Empty(blockDetailResponse.ValidationBag.Messages);
                 Assert.NotNull(blockDetailResponse.Blocks);
