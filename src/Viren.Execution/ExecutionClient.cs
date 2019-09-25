@@ -14,7 +14,7 @@ namespace Viren.Execution
         public ExecutionClient(HttpClient httpClient)
         {
             Model = new ModelClient(httpClient);
-            Calculation = new CalculationClient(httpClient, Model);
+            Calculation = new CalculationClient(httpClient);
             InteractiveRun = new InteractiveRunClient(httpClient);
             Documentation = new DocumentationClient(httpClient);
         }
