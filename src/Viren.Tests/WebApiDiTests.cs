@@ -34,7 +34,7 @@ namespace Viren.Tests
     {
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc();
+            services.AddMvc(option => option.EnableEndpointRouting = false);
 
 
             var config = new ConfigurationBuilder()
