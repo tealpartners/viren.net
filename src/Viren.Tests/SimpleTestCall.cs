@@ -4,6 +4,7 @@ using System.Linq;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Viren.Execution;
+using Viren.Execution.Requests.Calculations;
 using Xunit;
 
 namespace Viren.Tests
@@ -93,8 +94,18 @@ namespace Viren.Tests
 
                 var globals = new Dictionary<string, object>();
                 var root = new Dictionary<string, object>();
-                var requestId = Guid.NewGuid().ToString();
-                var calcRes = await client.Calculation.Execute("TestProject", "TestModel", 0, "NettoBerekening", globals, root, null, null, null, requestId);
+                var clientSessionId = Guid.NewGuid().ToString();
+                var request = new ExecuteCalculationRequest()
+                {
+                    Project = "TestProject",
+                    Model = "TestModel",
+                    Version = 0,
+                    EntryPoint = "NettoBerekening",
+                    Globals = globals,
+                    Root = root,
+                    ClientSessionId = clientSessionId
+                };
+                var calcRes = await client.Calculation.Execute(request);
                 Assert.NotNull(calcRes.ValidationMessages[0].Code);
                 Assert.NotNull(calcRes);
             }
