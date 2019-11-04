@@ -2,9 +2,9 @@
 {
     public enum TypeKind
     {
-        System = 0,
-        Simple = 1,
-        Complex = 2,
-        Table = 3
+        System = 7001,
+        Simple = 7002,
+        Complex = 7003,
+        Table = 7004
     }
 }

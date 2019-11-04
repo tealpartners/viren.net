@@ -2,10 +2,10 @@
 {
     public enum SystemType
     {
-        Unknown = 0,
-        String,
-        Decimal,
-        DateTime,
-        Boolean
+        Unknown = 17000,
+        String = 17001,
+        Decimal = 17002,
+        DateTime = 17003,
+        Boolean = 17004
     }
 }
