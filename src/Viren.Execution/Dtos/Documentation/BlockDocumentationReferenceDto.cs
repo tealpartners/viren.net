@@ -1,3 +1,5 @@
+using Viren.Core.Enums;
+
 namespace Viren.Execution.Dtos.Documentation
 {
     public class BlockDocumentationReferenceDto
@@ -7,5 +9,6 @@ namespace Viren.Execution.Dtos.Documentation
         public string Label { get; set; }
 
         public string UsageType { get; set; }
+        public BlockUsageType UsageTypeCode { get; set; }
     }
 }
