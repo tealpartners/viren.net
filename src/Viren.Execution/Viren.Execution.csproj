@@ -4,7 +4,7 @@
     <TargetFrameworks Condition="'$(LibraryFrameworks)'!=''">$(LibraryFrameworks)</TargetFrameworks>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
-    <Version>1.0.1</Version>
+    <Version>1.0.2</Version>
     <Authors>Teal Partners</Authors>
     <Product>Viren execution .NET client</Product>
     <RepositoryUrl>https://github.com/tealpartners/viren.net</RepositoryUrl>

@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Viren.Core.Dtos;
+using Viren.Core.Enums;
 
 namespace Viren.Execution.Dtos.CalculationDtos.Batch
 {

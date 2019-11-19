@@ -20,11 +20,11 @@ namespace Viren.Execution.Requests.Calculations
     {
         public ExecuteCalculationsResponse()
         {
-            ValidationMessages = new List<ValidationMessage>();
+            ValidationMessages = new List<BatchCalculationValidationMessage>();
             BatchCalculationOutputItems = new List<BatchCalculationOutputItemDto>();
         }
 
-        public List<ValidationMessage> ValidationMessages { get; set; }
+        public List<BatchCalculationValidationMessage> ValidationMessages { get; set; }
 
         public long ElapsedMilliseconds { get; set; }
 
