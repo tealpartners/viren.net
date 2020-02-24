@@ -57,7 +57,7 @@ namespace Viren.Execution.Clients
 
         public Task<GetLookupTableResponse> GetTable(GetLookupTableRequest request)
         {
-            return _client.Get<GetLookupTableResponse>($"{RoutePrefix.Project}/{UrlBuilder.BuildUrl(request)}/globals/table");
+            return _client.Get<GetLookupTableResponse>($"{RoutePrefix.Project}/{UrlBuilder.BuildUrl(request)}/globals/lookup-tables/{request.Id}");
         }
 
         public Task<GetLookupTablesResponse> GetTables(string project, string model, int version, string[] tableNames, int? revision = null)
