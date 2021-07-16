@@ -17,7 +17,7 @@ namespace Viren.Core.Helpers
 
         public static VirenExecutionOptions UseDevelopment(this VirenExecutionOptions options, string clientId, string clientSecret)
         {
-            return options.Use(clientId, clientSecret, "https://execution-dev.viren.be", "https://teal-calculation-dev.eu.auth0.com");
+            return options.Use(clientId, clientSecret, "https://execution-dev.viren.be", "https://teal-calculation-test.eu.auth0.com");
         }
 
         public static VirenExecutionOptions UseLocal(this VirenExecutionOptions options, string clientId, string clientSecret)
