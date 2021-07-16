@@ -19,7 +19,7 @@
     <ApplicationIcon>icon.ico</ApplicationIcon>
     <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
     <RepositoryType>git</RepositoryType>
-    <PackageVersion>1.0.3</PackageVersion>
+    <PackageVersion>1.0.4</PackageVersion>
   </PropertyGroup>
   <PropertyGroup Condition="'$(TargetFramework)'=='net46'">
     <AssemblyTitle>Viren.Core .NET 4.6</AssemblyTitle>
