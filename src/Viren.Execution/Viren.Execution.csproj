@@ -4,7 +4,7 @@
     <TargetFrameworks Condition="'$(LibraryFrameworks)'!=''">$(LibraryFrameworks)</TargetFrameworks>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
-    <Version>1.0.2</Version>
+    <Version>1.0.5</Version>
     <Authors>Teal Partners</Authors>
     <Product>Viren execution .NET client</Product>
     <RepositoryUrl>https://github.com/tealpartners/viren.net</RepositoryUrl>
@@ -12,18 +12,16 @@
     <PackageLicenseUrl></PackageLicenseUrl>
     <ApplicationIcon>..\..\assets\icon.ico</ApplicationIcon>
     <Description>.NET client for the Viren Execution API</Description>
-    <Copyright>© 2018-2019 Teal Partners</Copyright>
+    <Copyright>© 2018-2021 Teal Partners</Copyright>
     <PackageIconUrl>https://raw.githubusercontent.com/tealpartners/viren.net/master/assets/icon.png</PackageIconUrl>
     <PackageIcon>icon.png</PackageIcon>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageTags>Viren; API; Client</PackageTags>
-    <SignAssembly>false</SignAssembly>
-    <DelaySign>false</DelaySign>
-    <AssemblyOriginatorKeyFile>VirenExecutionKey.pfx</AssemblyOriginatorKeyFile>
     <AssemblyName>Viren.Execution</AssemblyName>
     <RootNamespace>Viren.Execution</RootNamespace>
     <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
     <RepositoryType>git</RepositoryType>
-    <PackageVersion>1.0.4</PackageVersion>
+    <PackageVersion>1.0.5</PackageVersion>
   </PropertyGroup>
   <PropertyGroup Condition="'$(TargetFramework)'=='net46'">
     <AssemblyTitle>Viren.Core .NET 4.6</AssemblyTitle>
@@ -48,7 +46,14 @@
       <Pack>True</Pack>
       <PackagePath></PackagePath>
     </None>
-    <None Include="icon.png" Pack="true" Visible="false" PackagePath="" />
+    <None Include="..\..\README.md">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
+    <None Include="..\..\assets\icon.png">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="NETStandard.Library" Version="2.0.3" />

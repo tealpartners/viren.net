@@ -5,22 +5,23 @@
     <TargetFrameworks Condition="'$(LibraryFrameworks)'!=''">$(LibraryFrameworks)</TargetFrameworks>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
-    <Version>1.0.2</Version>
+    <Version>1.0.5</Version>
     <Authors>Teal Partners</Authors>
     <Company>Teal Partners</Company>
     <Product>Viren .NET client core library</Product>
     <Description>Viren .NET client core library</Description>
-    <Copyright>© 2018-2019 Teal Partners</Copyright>
+    <Copyright>© 2018-2021 Teal Partners</Copyright>
     <PackageLicenseUrl></PackageLicenseUrl>
     <PackageProjectUrl>https://www.viren.be/</PackageProjectUrl>
     <PackageIconUrl>https://raw.githubusercontent.com/tealpartners/viren.net/master/assets/icon.png</PackageIconUrl>
     <PackageIcon>icon.png</PackageIcon>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
     <ApplicationIcon>..\..\assets\icon.ico</ApplicationIcon>
     <RepositoryUrl>https://github.com/tealpartners/viren.net</RepositoryUrl>
     <PackageTags>Viren; API; Client</PackageTags>
     <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
     <RepositoryType>git</RepositoryType>
-    <PackageVersion>1.0.4</PackageVersion>
+    <PackageVersion>1.0.5</PackageVersion>
   </PropertyGroup>
   <PropertyGroup Condition="'$(TargetFramework)'=='net46'">
     <AssemblyTitle>Viren.Core .NET 4.6</AssemblyTitle>
@@ -44,7 +45,14 @@
     <None Include="..\..\LICENSE.md">
       <Pack>True</Pack>
       <PackagePath></PackagePath>
+    </None>   
+    <None Include="..\..\README.md">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
     </None>
-    <None Include="icon.png" Pack="true" Visible="false" PackagePath="" />
+    <None Include="..\..\assets\icon.png">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
   </ItemGroup>
 </Project>

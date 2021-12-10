@@ -2,7 +2,7 @@
   <PropertyGroup>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
-    <Version>1.0.2</Version>
+    <Version>1.0.5</Version>
     <Authors>Teal Partners</Authors>
     <Product>Viren execution .NET client</Product>
     <RepositoryUrl>https://github.com/tealpartners/viren.net</RepositoryUrl>
@@ -10,18 +10,16 @@
     <PackageLicenseUrl></PackageLicenseUrl>
     <ApplicationIcon>..\..\assets\icon.ico</ApplicationIcon>
     <Description>.NET dependency injection extensions for the Viren Execution API</Description>
-    <Copyright>© 2018-2019 Teal Partners</Copyright>
+    <Copyright>© 2018-2021 Teal Partners</Copyright>
     <PackageIconUrl>https://raw.githubusercontent.com/tealpartners/viren.net/master/assets/icon.png</PackageIconUrl>
     <PackageIcon>icon.png</PackageIcon>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageTags>Viren; API; Client</PackageTags>
-    <SignAssembly>false</SignAssembly>
-    <DelaySign>false</DelaySign>
-    <AssemblyOriginatorKeyFile>VirenExecutionKey.pfx</AssemblyOriginatorKeyFile>
     <AssemblyName>Viren.Execution.Extensions.DependencyInjection</AssemblyName>
     <RootNamespace>Viren.Execution.Extensions.DependencyInjection</RootNamespace>
     <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
     <RepositoryType>git</RepositoryType>
-    <PackageVersion>1.0.4</PackageVersion>
+    <PackageVersion>1.0.5</PackageVersion>
     <TargetFrameworks>net6.0;netstandard2.0;netstandard2.1</TargetFrameworks>
   </PropertyGroup>
   <ItemGroup>
@@ -35,6 +33,13 @@
       <Pack>True</Pack>
       <PackagePath></PackagePath>
     </None>
-    <None Include="icon.png" Pack="true" Visible="false" PackagePath="" />
+    <None Include="..\..\README.md">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
+    <None Include="..\..\assets\icon.png">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
   </ItemGroup>
 </Project>
