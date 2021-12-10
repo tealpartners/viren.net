@@ -10,10 +10,11 @@
     <RepositoryUrl>https://github.com/tealpartners/viren.net</RepositoryUrl>
     <PackageProjectUrl>https://www.viren.be/</PackageProjectUrl>
     <PackageLicenseUrl></PackageLicenseUrl>
-    <ApplicationIcon>icon.ico</ApplicationIcon>
+    <ApplicationIcon>..\..\assets\icon.ico</ApplicationIcon>
     <Description>.NET client for the Viren Execution API</Description>
     <Copyright>© 2018-2019 Teal Partners</Copyright>
     <PackageIconUrl>https://raw.githubusercontent.com/tealpartners/viren.net/master/assets/icon.png</PackageIconUrl>
+    <PackageIcon>icon.png</PackageIcon>
     <PackageTags>Viren; API; Client</PackageTags>
     <SignAssembly>false</SignAssembly>
     <DelaySign>false</DelaySign>
@@ -47,6 +48,7 @@
       <Pack>True</Pack>
       <PackagePath></PackagePath>
     </None>
+    <None Include="icon.png" Pack="true" Visible="false" PackagePath="" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="NETStandard.Library" Version="2.0.3" />
