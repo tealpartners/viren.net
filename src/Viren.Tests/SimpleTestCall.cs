@@ -9,7 +9,6 @@ using Xunit;
 
 namespace Viren.Tests
 {
-
     public class SimpleTestCall
     {
         private TestSettings _testSettings;

@@ -1,20 +1,19 @@
-using System;
-using System.Collections.Generic;
 using System.Net.Http;
+using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
-using Viren.Core.Enums;
 using Viren.Core.Helpers;
+using Viren.Execution.Helpers;
 using Viren.Execution.Requests;
 using Viren.Execution.Requests.Calculations;
-using Viren.Execution.Requests.Clients;
 using Viren.Execution.Requests.Optimize;
 
+[assembly:InternalsVisibleTo("Viren.Tests")]
 namespace Viren.Execution.Clients
 {
     public interface ICalculationClient
     {
         Task<ExecuteCalculationResponse> Execute(ExecuteCalculationRequest request);
-        Task<ExecuteCalculationsResponse> Execute(ExecuteCalculationsRequest request);
+        Task<ExecuteCalculationsResponse> Execute(ExecuteCalculationsRequest request, bool batch = false);
         Task<OptimizeCalculationResponse> Optimize(OptimizeCalculationRequest request);
         Task<Z3CalculationResponse> Optimize(Z3CalculationRequest request);
         Task<ExecuteCalculationBatchResponse> Batch(ExecuteCalculationBatchRequest request);
@@ -34,7 +33,12 @@ namespace Viren.Execution.Clients
             return _client.Post<ExecuteCalculationRequest, ExecuteCalculationResponse>($"{RoutePrefix.Calculation}?debug={request.Debug}", request);
         }
 
-        public Task<ExecuteCalculationsResponse> Execute(ExecuteCalculationsRequest request)
+        public async Task<ExecuteCalculationsResponse> Execute(ExecuteCalculationsRequest request, bool batch = false)
+        {
+            return batch ? await Hestia.Protect(request, this) : await ExecuteInternal(request);
+        }
+
+        internal virtual Task<ExecuteCalculationsResponse> ExecuteInternal(ExecuteCalculationsRequest request)
         {
             return _client.Post<ExecuteCalculationsRequest, ExecuteCalculationsResponse>($"{RoutePrefix.CalculationsV2}", request);
         }
