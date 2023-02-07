@@ -53,61 +53,6 @@ calculation.Wait();
 return calculation.Result.Result;
 ```
 
-### Batch calculation
-```csharp
-using Viren.Execution;
-using Viren.Execution.Requests.Clients;
-using Viren.Execution.Requests.Calculations;
-using Newtonsoft.Json.Linq;
-
-var client = new ExecutionClient(clientId, clientSecret, Viren.Core.Enums.Environment.Production);
-
-// Optionally register webhook once to receive feedback (multiple registrations simply overwrite existing registration)
-var setWebHookRequest = new SetWebHookRequest
-{
-    // Viren will callback on this url at /api/webhook/calculation/complete (for request content see Viren.Execution.Requests.WebHook.CalculationCompleteRequest)
-    // Depending on your batch size, 1 or more calls will be made until the batch calculation has completed
-    Url = "http://<your callback endpoint>/",
-                
-    // Optional OAuth configuration which Viren should use to request an access token to call url specified above, 
-    // if not required leave TokenEndpoint and other settings empty
-    TokenEndpoint = "https://<your oauth token endpoint>/",
-    ClientId = "<client_id>",
-    ClientSecret = "<client_secret>",
-    Audience = "<audience>",
-};
-client.Calculation.RegisterWebHook(setWebHookRequest).Wait();
-
-// Execute batch calculaton
-var request = new ExecuteCalculationBatchRequest
-{
-    Inputs = new List<ExecuteCalculationBatchInput>
-    {
-        new ExecuteCalculationBatchInput
-        {
-            Project = "Project",
-            Model = "Model",
-            Version = 1,
-            Revision = null,
-            EntryPoint = "BlockName",
-            CalculationInputHeaders = new List<string>{ "Input1", "Input2" },
-            CalculationInputs = new List<ExecuteCalculationBatchInputItem>
-            {
-                new ExecuteCalculationBatchInputItem { RequestId = "<your correlation id>", Root = new List<JValue> { new JValue("Input1 value"), new JValue("Input2 value")  } }
-            }
-        },
-        // ...optionally other models to calculate in the same batch
-    }
-};
-var batch = client.Calculation.Batch(request);
-batch.Wait();
-
-var errors = batch.Result.ValidationMessages;
-var batchId = batch.Result.BatchId;
-
-// If webhook is registered, callbacks will contain received batch id with calculation results
-
-```
 
 ### Get tables from model
 ```csharp
