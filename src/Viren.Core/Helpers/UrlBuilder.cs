@@ -1,5 +1,4 @@
-﻿using System.Runtime.CompilerServices;
-using Viren.Core.Dtos;
+﻿using Viren.Core.Dtos;
 
 namespace Viren.Core.Helpers
 {

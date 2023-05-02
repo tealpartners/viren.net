@@ -1,13 +1,8 @@
-using System;
-using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
-using Viren.Core.Enums;
 using Viren.Core.Helpers;
 using Viren.Execution.Requests;
-using Viren.Execution.Requests.Calculations;
 using Viren.Execution.Requests.Clients;
-using Viren.Execution.Requests.Optimize;
 
 namespace Viren.Execution.Clients
 {

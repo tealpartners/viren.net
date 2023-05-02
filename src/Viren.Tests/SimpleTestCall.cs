@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Viren.Execution;
 using Viren.Execution.Requests.Calculations;
@@ -121,10 +120,8 @@ namespace Viren.Tests
             
             var apiHostName = _testSettings.apiHostName; // "http://dev.calc-exec.be/" ;
 
-            var auth0Domain = _testSettings.auth0Domain; // "https://teal-calculation-dev.eu.auth0.com";
-            var auth0TestsClientId = _testSettings.auth0TestsClientId; // "Hekmz983EKNcZTh5kETQqChZtUnuDXwe";
-            var auth0TestsClientSecret = _testSettings.auth0TestsClientSecret; // "9TPXNqylBXydE2H20QFxQc6lGy6MShk9nAxsr8LwH6E-klpLyNzPgoRcrPGSRGm5";
-            var httpClient = VirenHttpClientFactory.Create(auth0TestsClientId, auth0TestsClientSecret, apiHostName, auth0Domain);
+            var clientSecret = _testSettings.clientSecret; // "9TPXNqylBXydE2H20QFxQc6lGy6MShk9nAxsr8LwH6E-klpLyNzPgoRcrPGSRGm5";
+            var httpClient = VirenHttpClientFactory.Create(clientSecret, apiHostName);
             var client = new ExecutionClient(httpClient);
             return client;
         }

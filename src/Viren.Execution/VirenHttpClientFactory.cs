@@ -7,43 +7,32 @@ using Viren.Core.Helpers;
 namespace Viren.Execution
 {
     /// <summary>
-    /// http client factory that returns http client with Auth0 authorization handling
+    /// http client factory that returns http client with authorization handling
     /// </summary>
     public class VirenHttpClientFactory
     {
-        private static AccessTokenCache _accessTokenCache = null;
-
-        public static HttpClient Create(string publicKey, string secretKey, string virenDomain, string auth0Domain)
+        public static HttpClient Create(string secretKey, string virenDomain, string trustKey = null)
         {
-            return Create(new VirenExecutionOptions {ClientId = publicKey, ClientSecret = secretKey, Authority = auth0Domain, BaseUrl = virenDomain});
+            return Create(new VirenExecutionOptions {ClientSecret = secretKey, BaseUrl = virenDomain, TrustKey = trustKey});
         }
 
-        public static HttpClient Create(string publicKey, string secretKey, Viren.Core.Enums.Environment environment)
+        public static HttpClient Create(string secretKey, Viren.Core.Enums.Environment environment, string trustKey = null)
 
         {
-            return Create(new VirenExecutionOptions().UseEnvironment(environment, publicKey, secretKey));
+            return Create(new VirenExecutionOptions().UseEnvironment(environment, secretKey, trustKey));
         }
 
 
         /// <summary>
-        /// using this factory will asure AccessTokenCache messagehandler is instantiated only once
+        /// using this factory will asure AuthenticationHandler is instantiated only once
         /// </summary>
         /// <param name="options"></param>
         /// <returns></returns>
         public static HttpClient Create(VirenExecutionOptions options)
         {
-            if (_accessTokenCache == null)
-            {
-                var auth0HttpClient = new HttpClient {BaseAddress = new Uri(options.Authority)};
-
-                var auth0TokenClient = new Auth0TokenClient(auth0HttpClient);
-                _accessTokenCache = new AccessTokenCache(auth0TokenClient, options);
-            }
-
-            var refreshTokenHandler = RefreshTokenHandler.CreateFallback(_accessTokenCache);
-
-
-            var virenHttpClient = new HttpClient(refreshTokenHandler)
+            var authenticationHandler = AuthenticationHandler.CreateFallback(options);
+            
+            var virenHttpClient = new HttpClient(authenticationHandler)
             {
                 BaseAddress = new Uri(options.BaseUrl)
             };

@@ -1,16 +1,16 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks Condition="'$(LibraryFrameworks)'==''">net6.0;netstandard1.3;netstandard2.0;netstandard2.1</TargetFrameworks>
+    <TargetFrameworks Condition="'$(LibraryFrameworks)'==''">net6.0;netstandard1.3;netstandard2.0;netstandard2.1;net7.0</TargetFrameworks>
     <TargetFrameworks Condition="'$(LibraryFrameworks)'!=''">$(LibraryFrameworks)</TargetFrameworks>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
-    <Version>1.0.5</Version>
+    <Version>1.1.0-rc.1</Version>
     <Authors>Teal Partners</Authors>
     <Company>Teal Partners</Company>
     <Product>Viren .NET client core library</Product>
     <Description>Viren .NET client core library</Description>
-    <Copyright>© 2018-2021 Teal Partners</Copyright>
+    <Copyright>© 2018-2023 Teal Partners</Copyright>
     <PackageLicenseUrl></PackageLicenseUrl>
     <PackageProjectUrl>https://www.viren.be/</PackageProjectUrl>
     <PackageIconUrl>https://raw.githubusercontent.com/tealpartners/viren.net/master/assets/icon.png</PackageIconUrl>
@@ -21,7 +21,7 @@
     <PackageTags>Viren; API; Client</PackageTags>
     <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
     <RepositoryType>git</RepositoryType>
-    <PackageVersion>1.0.5</PackageVersion>
+    <PackageVersion>1.1.0-rc.1</PackageVersion>
   </PropertyGroup>
   <PropertyGroup Condition="'$(TargetFramework)'=='net46'">
     <AssemblyTitle>Viren.Core .NET 4.6</AssemblyTitle>

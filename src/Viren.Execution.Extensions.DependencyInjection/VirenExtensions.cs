@@ -8,21 +8,17 @@ namespace Viren.Execution.Extensions.DependencyInjection
 {
     public static class VirenExtensions
     {
-        public static IServiceCollection AddVirenExecution(this IServiceCollection serviceCollection, Environment environment,
-            string clientId, string clientSecret)
+        public static IServiceCollection AddVirenExecution(this IServiceCollection serviceCollection, Environment environment, string clientSecret, string trustKey = null)
         {
-            return serviceCollection.AddVirenExecution(ops => ops.UseEnvironment(environment, clientId, clientSecret));
+            return serviceCollection.AddVirenExecution(ops => ops.UseEnvironment(environment, clientSecret, trustKey));
         }
 
         public static IServiceCollection AddVirenExecution(this IServiceCollection serviceCollection, Action<VirenExecutionOptions> configureOptions,
-            Action<IHttpClientBuilder> extendOidcHttpClient = null,
             Action<IHttpClientBuilder> extendVirenHttpClient = null)
         {
             new VirenRegistrations(serviceCollection)
                 .AddVirenExecutionOptions(configureOptions)
-                .AddOidcClient(extendOidcHttpClient)
-                .AddAccessTokenCache()
-                .AddRefreshTokenHandler()
+                .AddAuthenticationHandler()
                 .AddVirenExecutionClient(extendVirenHttpClient);
 
             return serviceCollection;

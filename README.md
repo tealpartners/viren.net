@@ -24,10 +24,9 @@ using Environment = Viren.Core.Enums.Environment;
 
 ### Creating a client
 ```csharp
-var auth0ClientId = "";
-var auth0ClientSecret = "";
+var clientSecret = "";
 var environment = Environment.Production;
-var httpClient = VirenHttpClientFactory.Create(auth0ClientId, auth0ClientSecret, environment);
+var httpClient = VirenHttpClientFactory.Create(clientSecret, environment);
 var executionClient = new ExecutionClient(httpClient);
 ```
 

@@ -49,11 +49,8 @@ namespace Viren.Tests
 
 
 
-            services.AddVirenExecution(ops =>
-            {
-                ops.UseDevelopment(testSettings.auth0TestsClientId, testSettings.auth0TestsClientSecret);
-            },
-                extendOidcHttpClient: builder => builder.AddHttpMessageHandler<LogHttpBase<VirenExecutionOptions>> (),
+            services.AddVirenExecution(
+                ops => { ops.UseDevelopment(testSettings.clientSecret); },
                 extendVirenHttpClient: builder => builder.AddHttpMessageHandler<LogHttpBase<IVirenExecutionClient>>()
                 );
 

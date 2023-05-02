@@ -22,30 +22,9 @@ namespace Viren.Execution.Extensions.DependencyInjection
             return this;
         }
 
-        public VirenRegistrations AddOidcClient(Action<IHttpClientBuilder> extendOidcHttpClient)
+        public VirenRegistrations AddAuthenticationHandler()
         {
-            var oidcClientBuilder = _services.AddHttpClient("viren_oidc", (services, client) =>
-            {
-                var options = services.GetService<IOptions<VirenExecutionOptions>>().Value;
-                client.BaseAddress = new Uri(options.Authority, UriKind.Absolute);
-            }).AddTypedClient<Auth0TokenClient>();
-
-            extendOidcHttpClient?.Invoke(oidcClientBuilder);
-            return this;
-        }
-
-        public VirenRegistrations AddAccessTokenCache()
-        {
-            _services.AddSingleton(x =>
-                new AccessTokenCache(
-                    x.GetRequiredService<Auth0TokenClient>(),
-                    x.GetRequiredService<IOptions<VirenExecutionOptions>>().Value));
-            return this;
-        }
-
-        public VirenRegistrations AddRefreshTokenHandler()
-        {
-            _services.AddTransient<RefreshTokenHandler>();
+            _services.AddSingleton(provider => new AuthenticationHandler(provider.GetService<IOptions<VirenExecutionOptions>>().Value));
             return this;
         }
 
@@ -56,7 +35,7 @@ namespace Viren.Execution.Extensions.DependencyInjection
                     var options = services.GetService<IOptions<VirenExecutionOptions>>().Value;
                     client.BaseAddress = new Uri(options.BaseUrl);
                 })
-                .AddHttpMessageHandler<RefreshTokenHandler>()
+                .AddHttpMessageHandler<AuthenticationHandler>()
                 .AddTypedClient<IVirenExecutionClient, ExecutionClient>();
 
             extendVirenHttpClient?.Invoke(virenClientBuilder);
