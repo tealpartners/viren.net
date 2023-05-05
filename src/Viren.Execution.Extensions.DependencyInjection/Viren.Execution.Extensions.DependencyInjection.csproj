@@ -2,7 +2,7 @@
   <PropertyGroup>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
-    <Version>1.1.0-rc.1</Version>
+    <Version>1.1.0</Version>
     <Authors>Teal Partners</Authors>
     <Product>Viren execution .NET client</Product>
     <RepositoryUrl>https://github.com/tealpartners/viren.net</RepositoryUrl>
@@ -19,7 +19,7 @@
     <RootNamespace>Viren.Execution.Extensions.DependencyInjection</RootNamespace>
     <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
     <RepositoryType>git</RepositoryType>
-    <PackageVersion>1.1.0-rc.1</PackageVersion>
+    <PackageVersion>1.1.0</PackageVersion>
     <TargetFrameworks>net6.0;netstandard2.0;netstandard2.1;net7.0</TargetFrameworks>
   </PropertyGroup>
   <ItemGroup>
