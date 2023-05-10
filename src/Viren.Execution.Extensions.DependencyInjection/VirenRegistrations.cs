@@ -24,7 +24,8 @@ namespace Viren.Execution.Extensions.DependencyInjection
 
         public VirenRegistrations AddAuthenticationHandler()
         {
-            _services.AddSingleton(provider => new AuthenticationHandler(provider.GetService<IOptions<VirenExecutionOptions>>().Value));
+            // Always create new Message Handler
+            _services.AddTransient(provider => new AuthenticationHandler(provider.GetService<IOptions<VirenExecutionOptions>>().Value));
             return this;
         }
 
