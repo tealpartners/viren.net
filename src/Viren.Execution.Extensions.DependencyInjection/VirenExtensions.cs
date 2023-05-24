@@ -8,9 +8,9 @@ namespace Viren.Execution.Extensions.DependencyInjection
 {
     public static class VirenExtensions
     {
-        public static IServiceCollection AddVirenExecution(this IServiceCollection serviceCollection, Environment environment, string clientSecret, string trustKey = null)
+        public static IServiceCollection AddVirenExecution(this IServiceCollection serviceCollection, Environment environment, string clientSecret)
         {
-            return serviceCollection.AddVirenExecution(ops => ops.UseEnvironment(environment, clientSecret, trustKey));
+            return serviceCollection.AddVirenExecution(ops => ops.UseEnvironment(environment, clientSecret));
         }
 
         public static IServiceCollection AddVirenExecution(this IServiceCollection serviceCollection, Action<VirenExecutionOptions> configureOptions,

@@ -16,10 +16,10 @@ namespace Viren.Execution
             return Create(new VirenExecutionOptions {ClientSecret = secretKey, BaseUrl = virenDomain, TrustKey = trustKey});
         }
 
-        public static HttpClient Create(string secretKey, Viren.Core.Enums.Environment environment, string trustKey = null)
+        public static HttpClient Create(string secretKey, Viren.Core.Enums.Environment environment)
 
         {
-            return Create(new VirenExecutionOptions().UseEnvironment(environment, secretKey, trustKey));
+            return Create(new VirenExecutionOptions().UseEnvironment(environment, secretKey));
         }
 
 
