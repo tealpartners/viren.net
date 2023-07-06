@@ -22,7 +22,7 @@ namespace Viren.Core.Helpers
 
         public static VirenExecutionOptions UseLocal(this VirenExecutionOptions options, string clientSecret)
         {
-            return options.Use(clientSecret, "http://dev.calc-exec.be");
+            return options.Use(clientSecret, "https://dev.calc-exec.be");
         }
 
         public static VirenExecutionOptions Use(this VirenExecutionOptions options, string clientSecret, string baseUrl, string trustKey = null)
