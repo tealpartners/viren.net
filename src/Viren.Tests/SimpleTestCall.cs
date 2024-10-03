@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.Extensions.Configuration;
 using Viren.Execution;
 using Viren.Execution.Requests.Calculations;
@@ -12,6 +13,10 @@ namespace Viren.Tests
     public class SimpleTestCall
     {
         private TestSettings _testSettings;
+
+        private static string Project = "VirenDotNetProject";
+        private static string Model = "VirenDotNetModel";
+        private static int Version = 0;
 
         public SimpleTestCall()
         {
@@ -35,93 +40,77 @@ namespace Viren.Tests
         {
             var client = CreateClient();
 
-            try
-            {
-                var version = await client.Model.GetVersion("TestProject", "TestModel", false);
-                Assert.NotNull(version);
-            }
-            catch (Exception e) when (e.Message.Contains("you don't have enough rights you need to have"))
-            {
-                Assert.True(true, e.ToString()); //rechten issue, maar API call is gelukt
-            }
+            var version = await client.Model.GetVersion(Project, Model, false);
+            Assert.NotNull(version);
         }
         
         
         [Fact]
-        public async void DocumentationBlocks()
+        public async Task DocumentationBlocks()
         {
             var client = CreateClient();
 
-            try
-            {
-                var blocksResponse = await client.Documentation
-                    .GetBlocksDocumentation("TestProject", "TestModel", 1, "En", true);
-                Assert.NotNull(blocksResponse);
-                
-                var firstBlock = blocksResponse.Blocks.FirstOrDefault();
+            var blocksResponse = await client.Documentation
+                .GetBlocksDocumentation(Project, Model, Version, "En", true);
+            Assert.NotNull(blocksResponse);
+            
+            var firstBlock = blocksResponse.Blocks.FirstOrDefault();
 
-                Assert.NotNull(firstBlock);
-                var blockDetailResponse = await client.Documentation
-                    .GetBlocksDetailDocumentation("TestProject", "TestModel", 1, new List<string> {firstBlock.Id}, "En", true);
-                Assert.NotNull(blockDetailResponse);
-                Assert.Empty(blockDetailResponse.ValidationBag.Messages);
-                Assert.NotNull(blockDetailResponse.Blocks);
-                Assert.NotEmpty(blockDetailResponse.Blocks);
-                
-                
-                
-                var typesResponse = await client.Documentation
-                    .GetTypesDocumentation("TestProject", "TestModel", 1, "nl", true);
-                Assert.NotNull(typesResponse);
-                Assert.Empty(typesResponse.ValidationBag.Messages);
-                Assert.NotNull(typesResponse.Types);
-                Assert.NotEmpty(typesResponse.Types);
-            }
-            catch (Exception e) when (e.Message.Contains("you don't have enough rights you need to have"))
-            {
-                Assert.True(true, e.ToString()); //rechten issue, maar API call is gelukt
-            }
+            Assert.NotNull(firstBlock);
+            var blockDetailResponse = await client.Documentation
+                .GetBlocksDetailDocumentation(Project, Model, 1, new List<string> {firstBlock.Id}, "En", true);
+            Assert.NotNull(blockDetailResponse);
+            Assert.Empty(blockDetailResponse.ValidationBag.Messages);
+            Assert.NotNull(blockDetailResponse.Blocks);
+            Assert.NotEmpty(blockDetailResponse.Blocks);
+            
+            var typesResponse = await client.Documentation
+                .GetTypesDocumentation(Project, Model, Version, "nl", true);
+            Assert.NotNull(typesResponse);
+            Assert.NotNull(typesResponse.Types);
+            Assert.NotEmpty(typesResponse.Types);
         }
 
 
         [Fact]
-        public async void Calculate()
+        public async Task Calculate()
         {
-            try
-            {
-                var client = CreateClient();
+            var client = CreateClient();
 
-                var globals = new Dictionary<string, object>();
-                var root = new Dictionary<string, object>();
-                var clientSessionId = Guid.NewGuid().ToString();
-                var request = new ExecuteCalculationRequest()
-                {
-                    Project = "TestProject",
-                    Model = "TestModel",
-                    Version = 0,
-                    EntryPoint = "NettoBerekening",
-                    Globals = globals,
-                    Root = root,
-                    ClientSessionId = clientSessionId
-                };
-                var calcRes = await client.Calculation.Execute(request);
-                Assert.NotNull(calcRes.ValidationMessages[0].Code);
-                Assert.NotNull(calcRes);
-            }
-            catch (Exception e) when (e.Message.Contains("you don't have enough rights you need to have"))
+            var globals = new Dictionary<string, object>();
+            var root = new Dictionary<string, object>
             {
-                Assert.True(true, e.ToString()); //rechten issue, maar API call is gelukt
-            }
+                { "in1", 5 },
+                { "in2", 7 }
+            };
+
+            var clientSessionId = Guid.NewGuid().ToString();
+            var request = new ExecuteCalculationRequest()
+            {
+                Project = Project,
+                Model = Model,
+                Version = 0,
+                EntryPoint = "rootblock",
+                Globals = globals,
+                Root = root,
+                ClientSessionId = clientSessionId
+            };
+            var calcRes = await client.Calculation.Execute(request);
+
+            var result = (decimal)calcRes.Result["out1"];
+            Assert.Equal(12m, result);
+            Assert.NotNull(calcRes);
         }
 
         private ExecutionClient CreateClient()
         {
             Console.WriteLine(_testSettings);
             
-            var apiHostName = _testSettings.apiHostName; // "http://dev.calc-exec.be/" ;
+            var apiHostName = _testSettings.ApiHostName;
+            var clientSecret = _testSettings.ClientSecret;
+            var trustKey = _testSettings.TrustKey;
 
-            var clientSecret = _testSettings.clientSecret; // "9TPXNqylBXydE2H20QFxQc6lGy6MShk9nAxsr8LwH6E-klpLyNzPgoRcrPGSRGm5";
-            var httpClient = VirenHttpClientFactory.Create(clientSecret, apiHostName);
+            var httpClient = VirenHttpClientFactory.Create(clientSecret, apiHostName, trustKey);
             var client = new ExecutionClient(httpClient);
             return client;
         }

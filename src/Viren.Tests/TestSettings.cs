@@ -2,12 +2,14 @@
 {
     public class TestSettings
     {
-        public string apiHostName { get; set; }
-        public string clientSecret { get; set; }
+        public string ApiHostName { get; set; }
+        public string ClientSecret { get; set; }
+        public string TrustKey { get; set; }
+
 
         public override string ToString()
         {
-            return $"{apiHostName} {clientSecret}";
+            return $"{ApiHostName} {ClientSecret} {TrustKey}";
         }
     }
 }

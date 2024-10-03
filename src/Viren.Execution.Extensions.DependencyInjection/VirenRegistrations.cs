@@ -38,7 +38,7 @@ namespace Viren.Execution.Extensions.DependencyInjection
                 })
                 .AddHttpMessageHandler<AuthenticationHandler>()
                 .AddTypedClient<IVirenExecutionClient, ExecutionClient>();
-
+            
             extendVirenHttpClient?.Invoke(virenClientBuilder);
             return this;
         }

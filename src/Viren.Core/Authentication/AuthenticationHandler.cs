@@ -33,7 +33,7 @@ namespace Viren.Core.Authentication
             {
                 if(!string.IsNullOrEmpty(_virenConfig.TrustKey))
                 {
-                    request.Headers.Add("X-WAF-KEY", _virenConfig.TrustKey);
+                    request.Headers.Add("X-Azure-FDID", _virenConfig.TrustKey);
                 }
 
                 request.Headers.Authorization = new AuthenticationHeaderValue("ApiKey", _virenConfig.ClientSecret);
