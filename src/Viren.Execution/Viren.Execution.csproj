@@ -1,10 +1,10 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFrameworks Condition="'$(LibraryFrameworks)'==''">net6.0;netstandard1.3;netstandard2.0;netstandard2.1;net7.0</TargetFrameworks>
+    <TargetFrameworks Condition="'$(LibraryFrameworks)'==''">net6.0;netstandard1.3;netstandard2.0;netstandard2.1;net7.0;net8.0</TargetFrameworks>
     <TargetFrameworks Condition="'$(LibraryFrameworks)'!=''">$(LibraryFrameworks)</TargetFrameworks>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
-    <Version>1.1.4</Version>
+    <Version>1.1.5</Version>
     <Authors>Teal Partners</Authors>
     <Product>Viren execution .NET client</Product>
     <RepositoryUrl>https://github.com/tealpartners/viren.net</RepositoryUrl>
@@ -12,7 +12,7 @@
     <PackageLicenseUrl></PackageLicenseUrl>
     <ApplicationIcon>..\..\assets\icon.ico</ApplicationIcon>
     <Description>.NET client for the Viren Execution API</Description>
-    <Copyright>© 2018-2023 Teal Partners</Copyright>
+    <Copyright>© 2024 Teal Partners</Copyright>
     <PackageIconUrl>https://raw.githubusercontent.com/tealpartners/viren.net/master/assets/icon.png</PackageIconUrl>
     <PackageIcon>icon.png</PackageIcon>
     <PackageReadmeFile>README.md</PackageReadmeFile>
@@ -21,7 +21,7 @@
     <RootNamespace>Viren.Execution</RootNamespace>
     <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
     <RepositoryType>git</RepositoryType>
-    <PackageVersion>1.1.4</PackageVersion>
+    <PackageVersion>1.1.5</PackageVersion>
   </PropertyGroup>
   <PropertyGroup Condition="'$(TargetFramework)'=='net46'">
     <AssemblyTitle>Viren.Core .NET 4.6</AssemblyTitle>
