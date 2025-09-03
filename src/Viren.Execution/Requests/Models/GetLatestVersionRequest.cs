@@ -9,6 +9,9 @@ namespace Viren.Execution.Requests.Models
         public string Model { get; set; }
 
         public bool Draft { get; set; }
+
+        public string DraftKey { get; set; }
+
     }
 
     public class GetLatestVersionResponse

@@ -15,6 +15,8 @@ namespace Viren.Execution.Requests.Models
         public int? Revision { get; set; }
 
         public string[] GlobalIds { get; set; }
+
+        public string DraftKey { get; set; }
     }
 
     public class GetLookupTablesResponse

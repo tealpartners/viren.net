@@ -19,6 +19,7 @@ namespace Viren.Execution.Requests.Optimize
         public string Project { get; set; }
         public string Model { get; set; }
         public int Version { get; set; }
+        public string DraftKey { get; set; }
         public int? Revision { get; set; }
 
         public string EntryPoint { get; set; }
