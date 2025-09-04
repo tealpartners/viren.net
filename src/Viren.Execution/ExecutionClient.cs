@@ -15,14 +15,11 @@ namespace Viren.Execution
         {
             Model = new ModelClient(httpClient);
             Calculation = new CalculationClient(httpClient);
-            InteractiveRun = new InteractiveRunClient(httpClient);
             Documentation = new DocumentationClient(httpClient);
         }
 
         public ICalculationClient Calculation { get; }
         public IModelClient Model { get; }
-        public IInteractiveRunClient InteractiveRun { get; }
-        
         public IDocumentationClient Documentation { get; }
     }
 }

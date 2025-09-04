@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Viren.Core.Helpers;
@@ -10,10 +9,10 @@ namespace Viren.Execution.Clients
 {
     public interface IDocumentationClient
     {
-        Task<GetBlocksDetailDocumentationResponse> GetBlocksDetailDocumentation(string project, string model, int version, List<string> blocks, string language, bool? draft = null);
-        Task<GetBlocksDocumentationResponse> GetBlocksDocumentation(string project, string model, int version, string language, bool? draft = null);
+        Task<GetBlocksDetailDocumentationResponse> GetBlocksDetailDocumentation(string project, string model, int version, List<string> blocks, string language, bool? draft = null, string draftKey = null);
+        Task<GetBlocksDocumentationResponse> GetBlocksDocumentation(string project, string model, int version, string language, bool? draft = null, string draftKey = null);
 
-        Task<GetTypesDocumentationResponse> GetTypesDocumentation(string project, string model, int version, string language, bool? draft = null);
+        Task<GetTypesDocumentationResponse> GetTypesDocumentation(string project, string model, int version, string language, bool? draft = null, string draftKey = null);
     }
     
     public class DocumentationClient : IDocumentationClient
@@ -25,7 +24,7 @@ namespace Viren.Execution.Clients
             _client = client;
         }
 
-        public Task<GetBlocksDetailDocumentationResponse> GetBlocksDetailDocumentation(string project, string model, int version, List<string> blocks, string language, bool? draft = null)
+        public Task<GetBlocksDetailDocumentationResponse> GetBlocksDetailDocumentation(string project, string model, int version, List<string> blocks, string language, bool? draft = null, string draftKey = null)
         {
             var request = new GetBlocksDetailDocumentationRequest
             {
@@ -38,15 +37,29 @@ namespace Viren.Execution.Clients
                 
             };
             
-            var languageParam = string.IsNullOrEmpty(language) ? "" : $"Language={language}";
-            var blockIds = string.Join("&", blocks.Select((b, i) => $"BlockIds[{i}]={b}"));
-            var draftParam = draft.HasValue ? $"Draft={request.Draft}" : "";
-            var getPars = $"{blockIds}&{draftParam}&{languageParam}";
+            var queryParams = new List<string>();
+
+            if (!string.IsNullOrEmpty(language))
+            {
+                queryParams.Add($"Language={language}");
+            }
+
+            for (var i = 0; i < blocks.Count; i++)
+            {
+                queryParams.Add($"BlockIds[{i}]={blocks[i]}");
+            }
+            if (draftKey != null)
+            {
+                queryParams.Add($"DraftKey={draftKey}");
+            }
+
+            var getPars = string.Join("&", queryParams);
+
             return  _client.Get<GetBlocksDetailDocumentationResponse>($"{RoutePrefix.Api}/documentation/blocks/detail/{UrlBuilder.BuildUrl(request)}?{getPars}");
         }
 
         
-        public Task<GetBlocksDocumentationResponse> GetBlocksDocumentation(string project, string model, int version, string language, bool? draft = null)
+        public Task<GetBlocksDocumentationResponse> GetBlocksDocumentation(string project, string model, int version, string language, bool? draft = null, string draftKey = null)
         {
             var request = new GetBlocksDocumentationRequest
             {
@@ -56,14 +69,29 @@ namespace Viren.Execution.Clients
                 Draft = draft,
                 
             };
-            
-            var languageParam = string.IsNullOrEmpty(language) ? "" : $"Language={language}";
-            var draftParam = draft.HasValue ? $"Draft={request.Draft}" : "";
-            var getPars = $"{draftParam}&{languageParam}";
+
+            var queryParams = new List<string>();
+
+            if (!string.IsNullOrEmpty(language))
+            {
+                queryParams.Add($"Language={language}");
+            }
+
+            if (draft.HasValue)
+            {
+                queryParams.Add($"Draft={draft}");
+            }
+
+            if (draftKey != null)
+            {
+                queryParams.Add($"DraftKey={draftKey}");
+            }
+
+            var getPars = string.Join("&", queryParams);
             return  _client.Get<GetBlocksDocumentationResponse>($"{RoutePrefix.Api}/documentation/blocks/{UrlBuilder.BuildUrl(request)}?{getPars}");
         }
         
-        public Task<GetTypesDocumentationResponse> GetTypesDocumentation(string project, string model, int version, string language,  bool? draft = null)
+        public Task<GetTypesDocumentationResponse> GetTypesDocumentation(string project, string model, int version, string language,  bool? draft = null, string draftKey = null)
         {
             var request = new GetTypesDocumentationRequest
             {
@@ -74,9 +102,24 @@ namespace Viren.Execution.Clients
                 Language = language
             };
 
-            var languageParam = string.IsNullOrEmpty(language) ? "" : $"Language={language}";
-            var draftParam = draft.HasValue ? $"Draft={request.Draft}" : "";
-            var getPars = $"{languageParam}&{draftParam}";
+            var queryParams = new List<string>();
+
+            if (!string.IsNullOrEmpty(language))
+            {
+                queryParams.Add($"Language={language}");
+            }
+
+            if (draft.HasValue)
+            {
+                queryParams.Add($"Draft={draft}");
+            }
+
+            if (draftKey != null)
+            {
+                queryParams.Add($"DraftKey={draftKey}");
+            }
+
+            var getPars = string.Join("&", queryParams);
             return  _client.Get<GetTypesDocumentationResponse>($"{RoutePrefix.Api}/documentation/types/{UrlBuilder.BuildUrl(request)}?{getPars}");
         }
     }

@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -9,11 +10,11 @@ namespace Viren.Execution.Clients
 {
     public interface IModelClient
     {
-        Task<GetLatestVersionResponse> GetVersion(string project, string model, bool draft);
+        Task<GetLatestVersionResponse> GetVersion(string project, string model, bool draft, string draftKey = null);
         Task<GetLatestVersionResponse> GetVersion(GetLatestVersionRequest request);
-        Task<GetLookupTableResponse> GetTable(string project, string model, int version, string tableName, int? revision = null);
+        Task<GetLookupTableResponse> GetTable(string project, string model, int version, string tableName, int? revision = null, string draftKey = null);
         Task<GetLookupTableResponse> GetTable(GetLookupTableRequest request);
-        Task<GetLookupTablesResponse> GetTables(string project, string model, int version, string[] tableNames, int? revision = null);
+        Task<GetLookupTablesResponse> GetTables(string project, string model, int version, string[] tableNames, int? revision = null, string draftKey = null);
         Task<GetLookupTablesResponse> GetTables(GetLookupTablesRequest request);
     }
 
@@ -26,23 +27,32 @@ namespace Viren.Execution.Clients
             _client = client;
         }
 
-        public Task<GetLatestVersionResponse> GetVersion(string project, string model, bool draft)
+        public Task<GetLatestVersionResponse> GetVersion(string project, string model, bool draft, string draftKey = null)
         {
             var request = new GetLatestVersionRequest
             {
                 Project = project,
                 Model = model,
-                Draft = draft
+                Draft = draft,
+                DraftKey = draftKey
             };
             return GetVersion(request);
         }
 
         public Task<GetLatestVersionResponse> GetVersion(GetLatestVersionRequest request)
         {
-            return _client.Get<GetLatestVersionResponse>($"{RoutePrefix.Project}/{UrlBuilder.BuildUrl(request)}/latest-version?Draft={request.Draft}");
+            var queryParams = new List<string>();
+            queryParams.Add($"Draft={request.Draft}");
+            if (request.DraftKey != null)
+            {
+                queryParams.Add($"DraftKey={request.DraftKey}");
+            }
+
+            var getParams = string.Join("&", queryParams);
+            return _client.Get<GetLatestVersionResponse>($"{RoutePrefix.Project}/{UrlBuilder.BuildUrl(request)}/latest-version?{getParams}");
         }
 
-        public Task<GetLookupTableResponse> GetTable(string project, string model, int version, string tableName, int? revision = null)
+        public Task<GetLookupTableResponse> GetTable(string project, string model, int version, string tableName, int? revision = null, string draftKey = null)
         {
             var request = new GetLookupTableRequest
             {
@@ -50,17 +60,26 @@ namespace Viren.Execution.Clients
                 Model = model,
                 Version = version,
                 Id = tableName,
-                Revision = revision
+                Revision = revision,
+                DraftKey = draftKey
             };
             return GetTable(request);
         }
 
         public Task<GetLookupTableResponse> GetTable(GetLookupTableRequest request)
         {
-            return _client.Get<GetLookupTableResponse>($"{RoutePrefix.Project}/{UrlBuilder.BuildUrl(request)}/globals/lookup-tables/{request.Id}");
+            var queryParams = new List<string>();
+
+            if (request.DraftKey != null)
+            {
+                queryParams.Add($"DraftKey={request.DraftKey}");
+            }
+
+            var getParams = string.Join("&", queryParams);
+            return _client.Get<GetLookupTableResponse>($"{RoutePrefix.Project}/{UrlBuilder.BuildUrl(request)}/globals/lookup-tables/{request.Id}?{getParams}");
         }
 
-        public Task<GetLookupTablesResponse> GetTables(string project, string model, int version, string[] tableNames, int? revision = null)
+        public Task<GetLookupTablesResponse> GetTables(string project, string model, int version, string[] tableNames, int? revision = null, string draftKey = null)
         {
             var request = new GetLookupTablesRequest
             {
@@ -68,15 +87,30 @@ namespace Viren.Execution.Clients
                 Model = model,
                 Version = version,
                 GlobalIds = tableNames,
-                Revision = revision
+                Revision = revision,
+                DraftKey = draftKey
             };
             return GetTables(request);
         }
 
         public Task<GetLookupTablesResponse> GetTables(GetLookupTablesRequest request)
         {
-            var url = $"{RoutePrefix.Project}/{UrlBuilder.BuildUrl(request)}/globals/tables?";
-            url = request.GlobalIds.Aggregate(url, (current, globalId) => current + "GlobalIds=" + globalId + "&").TrimEnd('&');
+            var queryParams = new List<string>();
+
+            for (var i = 0; i < request.GlobalIds.Length; i++)
+            {
+                queryParams.Add($"GlobalIds[{i}]={request.GlobalIds[i]}");
+            }
+
+
+            if (request.DraftKey != null)
+            {
+                queryParams.Add($"DraftKey={request.DraftKey}");
+            }
+
+            var getParams = string.Join("&", queryParams);
+
+            var url = $"{RoutePrefix.Project}/{UrlBuilder.BuildUrl(request)}/globals/tables?{getParams}";
             return _client.Get<GetLookupTablesResponse>(url);
         }
     }

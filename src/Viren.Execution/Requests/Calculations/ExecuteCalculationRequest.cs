@@ -23,6 +23,7 @@ namespace Viren.Execution.Requests.Calculations
         public string Model { get; set; }
 
         public int Version { get; set; }
+        public string DraftKey { get; set; }
 
         public int? Revision { get; set; }
 
