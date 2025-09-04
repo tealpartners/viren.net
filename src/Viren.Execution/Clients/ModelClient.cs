@@ -97,7 +97,6 @@ namespace Viren.Execution.Clients
         {
             var queryParams = new List<string>();
 
-            //TODO: Zeker is geod testne want was vroeger nogal raar geschreven, werkte dat vroeger ??
             for (var i = 0; i < request.GlobalIds.Length; i++)
             {
                 queryParams.Add($"GlobalIds[{i}]={request.GlobalIds[i]}");
