@@ -31,6 +31,8 @@ namespace Viren.Execution.Requests.Calculations
 
         public bool? Debug { get; set; }
 
+        public bool IsTest { get; set; }
+
         public ResultType? ResultType { get; set; }
 
         public string ClientSessionId { get; set; }

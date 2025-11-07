@@ -31,6 +31,8 @@ namespace Viren.Execution.Requests.Optimize
         public OptimizeOutputInfoDto OptimizeOutput { get; set; }
 
         public string ClientSessionId { get; set; }
+
+        public bool IsTest { get; set; }
     }
 
     public class OptimizeCalculationResponse
