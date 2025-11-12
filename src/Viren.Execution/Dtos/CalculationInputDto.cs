@@ -11,7 +11,6 @@ namespace Viren.Execution.Dtos
         }
 
         public string RequestId { get; set; }
-        public bool IsTest { get; set; }
         public IDictionary<string, object> Root { get; set; }
         public IDictionary<string, object> Globals { get; set; }
     }
