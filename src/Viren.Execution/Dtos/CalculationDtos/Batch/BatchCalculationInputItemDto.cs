@@ -29,6 +29,8 @@ namespace Viren.Execution.Dtos.CalculationDtos.Batch
 
         public ResultType? ResultType { get; set; }
 
+        public bool IsTest { get; set; }
+
         public IList<CalculationInputDto> CalculationInputs { get; set; }
     }
 }
